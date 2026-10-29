@@ -133,16 +133,27 @@ Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI imag
    ```bash
    DO_NOT_TRACK=1 npx --yes skills add https://kie.ai --skill kie-models --global --agent claude-code --copy --yes
    ```
-2. **The key.**
-   - If `.env` doesn't exist, create it with `printf 'KIE_API_KEY=\n' > .env`.
-   - Open it for them with `open -e .env` (Mac) or `notepad .env` (Windows).
-   - Tell them to copy their key from kie.ai/api-key, paste it straight after the `=` with no spaces, then save and close the file.
-   - Check it's there without showing it: `grep -c '^KIE_API_KEY=.' .env` should print `1`.
-3. **Test it for free** by asking for the credit balance. The first half loads the key without printing it, and strips the hidden line endings and spaces Notepad or a paste can add:
+2. **The key, straight from their clipboard.** They never paste it anywhere.
+   - Ask them to sign in at kie.ai/api-key, copy their key (its copy button), and say "copied".
+   - Write it into `.env` without showing it. `.env` holds only this key, so writing over it is fine:
+     - Mac:
+       ```bash
+       printf 'KIE_API_KEY=%s\n' "$(pbpaste | tr -d '\r\n ')" > .env
+       ```
+     - Windows:
+       ```bash
+       printf 'KIE_API_KEY=%s\n' "$(powershell -NoProfile -Command Get-Clipboard | tr -d '\r\n ')" > .env
+       ```
+   - Check its length without showing it: `grep '^KIE_API_KEY=' .env | cut -d= -f2- | tr -d '\n' | wc -c`. Under 20 means the clipboard held something else, so they copy the key again.
+   - **If the clipboard route won't work:**
+     1. Create the file with `printf 'KIE_API_KEY=\n' > .env`.
+     2. Open it with `open -e .env` (Mac) or `notepad .env` (Windows).
+     3. They paste the key straight after the `=`, then save and close.
+3. **Test it for free** by asking for the credit balance. The first half loads the key without printing it, and strips any hidden line endings and spaces:
    ```bash
    export KIE_API_KEY="$(grep '^KIE_API_KEY=' .env | cut -d= -f2- | tr -d '\r\n ')"; curl -s -H "Authorization: Bearer $KIE_API_KEY" https://api.kie.ai/api/v1/chat/credit
    ```
-   It should print a balance. A 401 means the key is wrong, so they paste it again.
+   It should print a balance. A 401 means the key is wrong, so they copy it again and say "copied".
 
 When it works, set the `Kie.ai` line in `my-clinic.md` to `set up`, if the file exists.
 
@@ -247,5 +258,5 @@ Run this when the person asks to update ("update my video editing setup"):
 | `hyperframes browser ensure` fails | `npx --yes hyperframes browser ensure --force`. If it's blocked, try another network. |
 | Parakeet still won't install | Carry on with Whisper, but warn them that stutters and restarts will be harder to find. Try Parakeet again another day. |
 | "No space left on device" | Stop. They free up space, then continue setup. |
-| Kie: 401 | The key is wrong or has spaces. Paste it again. |
+| Kie: 401 | The key is wrong. They copy it again on kie.ai and say "copied". |
 | Kie: not enough credits | Top up at kie.ai. Nothing else needs changing. |
