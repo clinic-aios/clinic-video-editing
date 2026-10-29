@@ -1,4 +1,4 @@
-# Claude Video Editing
+# Clinic Video Editing
 
 Edits staff-recorded videos for a UK clinic: recordings go in, finished, on-brand videos come out. Always use British English.
 
