@@ -1,0 +1,22 @@
+{
+  "env": {
+    "HYPERFRAMES_SKIP_SKILLS": "1",
+    "DO_NOT_TRACK": "1"
+  },
+  "permissions": {
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Edit(.env)",
+      "Edit(.env.*)",
+      "Grep(.env)",
+      "Grep(.env.*)",
+      "Bash(cat .env*)",
+      "Bash(grep * .env*)",
+      "Bash(head .env*)",
+      "Bash(tail .env*)",
+      "Bash(pbpaste*)",
+      "Bash(powershell*Get-Clipboard*)"
+    ]
+  }
+}
