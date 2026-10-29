@@ -30,6 +30,7 @@ Coach the person through any problem their computer throws up, as the guide desc
    - Run its finder.
    - Then read the whole silenced transcript yourself and add anything it missed, such as restarts ("I'm going to, um, I'm going to") and stray "um"s.
    - Show the person every candidate with your recommendation, and apply only the ones they approve. Never skip this review.
+   - For its review page, start `npx --yes serve . -p 8080 -n` in the background, then open the page. If a firewall pop-up appears, Deny is fine.
 4. Graphics, captions and render:
    - Start at `/hyperframes` with the cut video, and let it choose its own workflow and skills.
    - Brand everything from the project's `DESIGN.md`, and put the captions in the same composition.
@@ -42,11 +43,15 @@ The skills in this folder are listed in `SKILLS.md`.
 
 ## Brand
 
-The design system linked in `my-clinic.md` is the only brand source. Read its `project/README.md` with the Artifact tool and write every project's `DESIGN.md` from it: palette, type, logo and tone. When a design-system image or film is used, save a local copy in `media-library/brand/`.
+Brand only from `my-clinic.md`:
+- **If it links a design system,** that's the only brand source. Read its `project/README.md` with the Artifact tool and write every project's `DESIGN.md` from it: palette, type, logo and tone.
+- **If it says "not yet",** use its Brand line (logo, colours, font) the same way. If that's empty too, ask for those once, add them to `my-clinic.md`, and carry on.
+
+When a brand image or film is used, save a local copy in `media-library/brand/`.
 
 ## Folders
 
-- `video-projects/<slug>/`: one folder per video. It holds the recording, `work/` (transcripts and cuts), the composition and `renders/`.
+- `video-projects/<slug>/`: one folder per video. It holds the recording, `assets/` (transcripts, cuts and the cut videos, as the cutting skills expect), the composition and `renders/`.
 - `media-library/`: shared media in `brand/`, `kie/` and `b-roll/`. Projects use files from here rather than copying them about.
 - `.env`: `KIE_API_KEY`.
 - All of these, and `my-clinic.md`, are gitignored and stay on this computer.
@@ -54,6 +59,7 @@ The design system linked in `my-clinic.md` is the only brand source. Read its `p
 ## Kie.ai
 
 - Use Kie's own skill, `kie-models`, for images, video clips and music.
-- Load the key into the command without printing it: `set -a; . ./.env; set +a`.
+- If `my-clinic.md` says `Kie.ai: later`, offer to set it up with `SETUP.md` step 5 before the first generation.
+- Load the key into the command without printing it: `export KIE_API_KEY="$(grep '^KIE_API_KEY=' .env | cut -d= -f2- | tr -d '\r\n ')"`.
 - Before every generation, state the model and the credit cost, and wait for a yes.
 - Save outputs to `media-library/kie/` and keep the task id.

@@ -1,6 +1,6 @@
 # Clinic Video Editing
 
-Record yourself talking to camera. Claude cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Everything runs on your own computer.
+Record yourself talking to camera. Claude cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Your recordings are edited on your own computer and never uploaded: Claude works from their transcripts and the stills it checks.
 
 ## What you need
 

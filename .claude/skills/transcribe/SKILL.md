@@ -1,6 +1,6 @@
 ---
 name: transcribe
-description: Makes a word-by-word transcript of a recording on this computer, ready for cut-silences and cut-mistakes. Use as the first step of every edit, or whenever a recording needs a transcript. Keeps stutters, restarts and "um"s so mistakes can be found. Nothing leaves the computer.
+description: Makes a word-by-word transcript of a recording on this computer, ready for cut-silences and cut-mistakes. Use as the first step of every edit, or whenever a recording needs a transcript. Keeps stutters, restarts and "um"s so mistakes can be found. The recording is never uploaded.
 ---
 
 # Transcribe
@@ -8,8 +8,8 @@ description: Makes a word-by-word transcript of a recording on this computer, re
 Step 1 of every edit. Produces `<recording-name>.words.json`, the shape the cutters read: `{ "words": [ { "text", "start", "end" } ], "audio_duration_secs" }`, in seconds on the recording's own timeline.
 
 ```bash
-npx --yes hyperframes transcribe "<recording>" --dir "<project>/work" --json
-node .claude/skills/transcribe/scripts/words.mjs "<project>/work/transcript.json" --video "<recording>"
+npx --yes hyperframes transcribe "<recording>" --dir "<project>/assets" --json
+node .claude/skills/transcribe/scripts/words.mjs "<project>/assets/transcript.json" --video "<recording>"
 ```
 
 1. **HyperFrames transcribes** with its local speech engine and writes `transcript.json` into `--dir`. The JSON it prints names the engine. It must say `parakeet`. If it says `whisper`, stop: Whisper tidies away stutters and restarts, so `cut-mistakes` would find nothing. Install Parakeet with `npx --yes hyperframes models install parakeet`, then transcribe again. A long recording takes a few minutes.
