@@ -46,7 +46,7 @@ HyperFrames' skills live in this folder, not the whole computer:
 - Give every `npx hyperframes init` `--skip-skills`.
 - If the `hyperframes` skill wants another of its skills, install it into this folder with `SETUP.md` step 4.2.
 
-The skills in this folder are listed in `SKILLS.md`. They're in `.claude/skills/` for Claude Code and `.agents/skills/` for Codex and other tools; the starter's own skills are in both.
+The starter's skills are listed in `README.md` ("The skills"). They're in `.claude/skills/` for Claude Code and `.agents/skills/` for Codex and other tools; the starter's own skills are in both.
 
 ## Brand
 

@@ -222,10 +222,13 @@ Tell them it all works. Then ask them to start a **new conversation** in this fo
 Run this when the person asks to update ("update my video editing setup"):
 
 1. **Ask whether they're in the middle of a video.** If so, suggest finishing it first: an update can change how HyperFrames behaves part-way through.
-2. **The starter:** `git pull --ff-only`. If it refuses because files here were changed:
-   - show them `git status`;
-   - their own settings belong in `my-clinic.md`, which updates never touch;
-   - ask before discarding any change.
+2. **The starter:**
+   1. Note the **Version** line at the top of `README.md`.
+   2. Run `git pull --ff-only`. If it refuses because files here were changed:
+      - show them `git status`;
+      - their own settings belong in `my-clinic.md`, which updates never touch;
+      - ask before discarding any change.
+   3. If the version went up, read `README.md`'s "What's new" entries since their old version and tell them what changed, in plain English.
 3. **HyperFrames' skills:** re-run the command in step 4.2. It fetches the latest from HeyGen's GitHub and replaces the copies in this folder. Add the name of any other HyperFrames skill already in your app's skills folder.
 4. **Kie's skill:** re-run the command in step 5.1, but only if `my-clinic.md` says `Kie.ai: set up`.
 5. **Run step 7 again**, then they start a new conversation. Re-running it overwrites the old test files, so there's nothing to delete first.

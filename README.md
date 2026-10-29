@@ -1,5 +1,7 @@
 # Clinic Video Editing
 
+**Version 0.1.0** · see [What's new](#whats-new)
+
 Record yourself talking to camera. Your AI assistant cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Your recordings are edited on your own computer and never uploaded: the assistant works from their transcripts and the stills it checks.
 
 ## What you need
@@ -41,19 +43,88 @@ When you're between videos, say:
 
 > Update my video editing setup.
 
-Your settings, keys, media and videos are never touched by an update.
+Your assistant tells you what's new. Your settings, keys, media and videos are never touched by an update.
 
 ## What's inside
 
-- `AGENTS.md`: the clinic rules and the editing order the AI assistant follows. `CLAUDE.md` loads them for Claude; Codex and other tools read `AGENTS.md` directly.
-- `SETUP.md`: the setup guide the assistant follows, including fixes for common computer problems.
-- `SKILLS.md`: the editing skills in this starter, and how to add one.
+- `README.md`: this page, the only one written for people.
+- `SETUP.md`: the setup and update guide your assistant follows, including fixes for common computer problems.
+- `AGENTS.md`: the clinic rules and the editing order your assistant follows. `CLAUDE.md` loads them for Claude; Codex and other tools read `AGENTS.md` directly.
 - `.claude/skills/` and `.agents/skills/`: the skills, in two identical copies. The first is for Claude Code, the second for Codex and other tools. Add your own skills to the one your app uses.
+- `.claude/settings.json`: Claude Code settings that keep your key file out of the assistant's reach.
+- `LICENSE` and `licenses/`: the licences (see the end of this page).
 
-HyperFrames (the video engine) and its skills, and Kie's skill, are fetched from their makers during setup. They aren't stored in this repo, and their skills load only in this folder.
+## The skills
 
-## Credits
+| Skill | What it does | Source | Added |
+| --- | --- | --- | --- |
+| `transcribe` | Word-by-word transcript made on the computer. It keeps stutters and restarts, and lines words up with the real pauses. | This starter | 0.1.0 |
+| `cut-silences` | Trims dead air and long pauses, keeping a natural breath. | Nate Herk's Student Kit, unchanged | 0.1.0 |
+| `cut-mistakes` | Finds stutters, false starts and retakes, then cuts only the ones you approve. Its review page is `scripts/build-edl-review.mjs`. | Nate Herk's Student Kit, unchanged | 0.1.0 |
+| `kie` | Opens the key file for you to paste your Kie key, and sends every Kie request without the key being shown. It's the only thing allowed to touch `.env`. | This starter | 0.1.0 |
 
-- [HyperFrames](https://github.com/heygen-com/hyperframes) is by HeyGen.
-- The cutting skills are by Nate Herk, from his [HyperFrames Student Kit](https://github.com/nateherkai/hyperframes-student-kit). See `NOTICE.md`.
-- Generated media comes from [Kie.ai](https://kie.ai).
+Setup also installs these into your skills folder. They come from their makers, aren't stored in this repo, and load only in this folder, never in your other AI projects:
+- HyperFrames' four core skills (`hyperframes`, `hyperframes-cli`, `hyperframes-registry`, `media-use`), from HeyGen's GitHub. The `hyperframes` skill is the front door.
+- Kie's `kie-models`.
+
+## What's new
+
+### 0.1.0 · 2026-10-29
+
+First release, for the pilot.
+- One setup prompt; `SETUP.md` coaches you through your computer's quirks and ends with a test video.
+- Transcription on your computer with Parakeet. It keeps the slips the mistake-cutter needs to see.
+- Nate Herk's `cut-silences` and `cut-mistakes`, copied from his kit at commit `10511e5` (2026-10-14).
+- Kie key handled by the `kie` skill only. Claude Code is blocked from reading the key file.
+- HyperFrames' and Kie's skills install into this folder only.
+- Rules in `AGENTS.md`, and skills in both `.claude/skills/` and `.agents/skills/`, so Codex can use it too (untested so far).
+
+## For maintainers
+
+### Adding or changing a skill
+
+1. **One folder per skill:** `<name>/SKILL.md`, with anything it needs (`scripts/`, `references/`) inside that folder. Write commands with the path from the top of the workspace, such as `node .claude/skills/<name>/scripts/<file>.mjs`. That path works in both apps, because the repo ships both folders.
+2. **A starter skill goes in both folders.** Write it in `.claude/skills/`, then copy it across with `rsync -a --delete .claude/skills/<name>/ .agents/skills/<name>/`. `diff -rq .claude/skills .agents/skills` prints nothing when the two copies match. A member's own skill goes only in their app's folder.
+3. **Keep it self-contained:**
+   - Clinic-wide rules live in `AGENTS.md`, not in skills.
+   - Only name this starter's skills and the `hyperframes` skill, never HyperFrames' inner skills: they change between releases.
+   - Don't name a skill `hyperframes-…`: `.gitignore` hides those names, because setup installs HyperFrames' own skills under them.
+4. **If it needs a new tool,** add its check and install to `SETUP.md` step 2 or 4. Otherwise members' setups won't have it.
+5. **Add or update its row in The skills.** If someone else wrote it, put their licence in `licenses/` and add them to Credits and licences below. For someone else's skill you've changed, mark it "modified" in its Source cell.
+6. **To remove a skill,** delete its folder from both copies and its row. If `AGENTS.md`'s running order names it, update that too.
+7. **Test** with `SETUP.md` step 7, which runs the first three skills on a test clip.
+
+### Refreshing Nate's files
+
+Only when one of these happens:
+- a member hits a real bug in the cutters;
+- FFmpeg changes the `-/filter_complex` syntax;
+- Nate publishes a cutting improvement worth having.
+
+How:
+1. Shallow-clone his kit: `git clone --depth 1 https://github.com/nateherkai/hyperframes-student-kit.git`.
+2. Copy the same files from it, unchanged. Never patch them here.
+   - From his `.claude/skills/`, `cut-silences` and `cut-mistakes`, into both skills folders here.
+   - `scripts/build-edl-review.mjs`.
+   - His `LICENSE` and `licenses/PIPELINE-USE-PERMISSION.txt`.
+3. Confirm the skills' commands still say `node .claude/skills/…`.
+4. Note the new commit in What's new, and run `SETUP.md` step 7.
+
+### Releasing
+
+1. Raise the **Version** line at the top of this page.
+2. Add a What's new entry with the date and plain-English bullets. Members' assistants read it to tell them what changed.
+3. Commit and push. Members get it with "Update my video editing setup".
+
+## Credits and licences
+
+- **This starter's own files** (the documents and the `transcribe` and `kie` skills): MIT, see `LICENSE`.
+- **Nate Herk's files** keep their own licences, in `licenses/`: MIT, plus his kit's use permission, which asks that the notice travel with the files. They are:
+  - `cut-silences`;
+  - `cut-mistakes`;
+  - `scripts/build-edl-review.mjs`.
+
+  They come from his [HyperFrames Student Kit](https://github.com/nateherkai/hyperframes-student-kit), commit `10511e5af86fc47756ea89803b397422e2d89284` (2026-10-14), and were copied unchanged. Thank you, Nate.
+- **[HyperFrames](https://github.com/heygen-com/hyperframes)**, by HeyGen (Apache-2.0), is installed during setup, not bundled. It downloads its own Chrome for rendering, and NVIDIA's Parakeet speech model for transcription.
+- **[Kie.ai](https://kie.ai)**'s `kie-models` skill and generated media are installed and used from your own Kie account.
+- **FFmpeg, Node and Git** are each under their own licence.
