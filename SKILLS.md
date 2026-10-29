@@ -7,7 +7,7 @@ This starter's own skills live in `.claude/skills/`, one folder each. Members ge
 | `transcribe` | Word-by-word transcript made on the computer. It keeps stutters and restarts, and lines words up with the real pauses. | This starter | 2026-10-29 |
 | `cut-silences` | Trims dead air and long pauses, keeping a natural breath. | Nate Herk's Student Kit, unchanged | 2026-10-29 |
 | `cut-mistakes` | Finds stutters, false starts and retakes, then cuts only the ones the person approves. | Nate Herk's Student Kit, unchanged | 2026-10-29 |
-| `kie` | Saves the Kie key from the clipboard and sends every Kie request, so the key is never shown. It is the only thing allowed to touch `.env`. | This starter | 2026-10-29 |
+| `kie` | Opens the key file for the person to paste their Kie key, and sends every Kie request without the key being shown. It is the only thing allowed to touch `.env`. | This starter | 2026-10-29 |
 
 Shared helper: `cut-mistakes` expects its review page at `scripts/build-edl-review.mjs` (Nate's, unchanged).
 

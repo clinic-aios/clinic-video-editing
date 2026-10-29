@@ -133,11 +133,10 @@ Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI imag
    DO_NOT_TRACK=1 npx --yes skills add https://kie.ai --skill kie-models --global --agent claude-code --copy --yes
    ```
 2. **The key.** Never touch `.env` yourself: Claude's tools are blocked from it, and the `kie` skill's script is the only thing that reads or writes it.
-   1. Ask them to sign in at kie.ai/api-key, copy their key (its copy button), and say "copied". They never paste it anywhere.
-   2. Run `node .claude/skills/kie/scripts/kie.mjs set-key`. It saves the key from the clipboard and prints only its length.
-   3. If it says the clipboard doesn't hold a key, they copy it again.
-   4. If the clipboard can't be read at all, run `edit-key` instead. It opens the file in TextEdit or Notepad: they paste the key after `KIE_API_KEY=`, then save and close.
-3. **Test it for free:** `node .claude/skills/kie/scripts/kie.mjs balance` should print a credit balance. If it says the key is wrong, they copy it again and say "copied".
+   1. Ask them to sign in at kie.ai/api-key and copy their key (its copy button).
+   2. Run `node .claude/skills/kie/scripts/kie.mjs key`. TextEdit (Mac) or Notepad (Windows) opens, showing `KIE_API_KEY=`.
+   3. Tell them: paste the key straight after the `=`, save (⌘S on a Mac, Ctrl+S on Windows), close the window, and say "done".
+3. **Test it for free:** `node .claude/skills/kie/scripts/kie.mjs balance` should print a credit balance. If it says the key is wrong, run `key` again so they can fix it.
 
 When it works, set the `Kie.ai` line in `my-clinic.md` to `set up`, if the file exists.
 
@@ -242,5 +241,5 @@ Run this when the person asks to update ("update my video editing setup"):
 | `hyperframes browser ensure` fails | `npx --yes hyperframes browser ensure --force`. If it's blocked, try another network. |
 | Parakeet still won't install | Carry on with Whisper, but warn them that stutters and restarts will be harder to find. Try Parakeet again another day. |
 | "No space left on device" | Stop. They free up space, then continue setup. |
-| Kie: 401 | The key is wrong. They copy it again on kie.ai and say "copied". |
+| Kie: 401 | The key is wrong. Run the kie skill's `key` command so they can paste it again. |
 | Kie: not enough credits | Top up at kie.ai. Nothing else needs changing. |

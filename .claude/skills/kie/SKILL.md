@@ -1,6 +1,6 @@
 ---
 name: kie
-description: Every Kie.ai request in this folder goes through this skill. It saves the person's Kie key, checks their credit balance, and sends generation requests without the key ever being shown. Use it with Kie's own kie-models skill, which says which model to use, what to send and what it costs. Never call Kie with curl or read the key yourself.
+description: Every Kie.ai request in this folder goes through this skill. It opens the key file for the person to paste their Kie key, checks their credit balance, and sends generation requests without the key ever being shown. Use it with Kie's own kie-models skill, which says which model to use, what to send and what it costs. Never call Kie with curl or read the key yourself.
 ---
 
 # Kie
@@ -8,8 +8,7 @@ description: Every Kie.ai request in this folder goes through this skill. It sav
 `.env` is off limits to Claude's own tools. This script is the only thing that touches it. It reads the key, sends it only to `api.kie.ai`, and never prints it.
 
 ```bash
-node .claude/skills/kie/scripts/kie.mjs set-key     # save the key from the clipboard
-node .claude/skills/kie/scripts/kie.mjs edit-key    # fallback: opens .env so they paste it by hand
+node .claude/skills/kie/scripts/kie.mjs key         # opens .env in TextEdit / Notepad
 node .claude/skills/kie/scripts/kie.mjs balance     # free credit check
 node .claude/skills/kie/scripts/kie.mjs call POST /api/v1/jobs/createTask @<project>/assets/kie-task.json
 node .claude/skills/kie/scripts/kie.mjs call GET "/api/v1/jobs/recordInfo?taskId=<id>"
@@ -17,11 +16,10 @@ node .claude/skills/kie/scripts/kie.mjs call GET "/api/v1/jobs/recordInfo?taskId
 
 ## Saving the key
 
-1. Ask them to sign in at kie.ai/api-key, copy their key with its copy button, and say "copied".
-2. Run `set-key`.
-3. Run `balance`.
-
-They never paste the key anywhere. If `set-key` says the clipboard doesn't hold a key, they copy it again. If the clipboard can't be read at all, use `edit-key` and tell them to paste it after `KIE_API_KEY=`, then save and close.
+1. Ask them to sign in at kie.ai/api-key and copy their key with its copy button.
+2. Run `key`. TextEdit (Mac) or Notepad (Windows) opens, showing `KIE_API_KEY=`.
+3. Tell them: paste the key straight after the `=`, save (⌘S on a Mac, Ctrl+S on Windows), then close the window and say "done".
+4. Run `balance`. If it says the key is wrong, run `key` again so they can fix it.
 
 ## Making something
 
