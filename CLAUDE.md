@@ -31,7 +31,7 @@ The design system linked in `my-clinic.md` is the only brand source. Read its `p
 1. Transcribe word by word (see Transcription).
 2. `cut-silences`: render the silenced video.
 3. `cut-mistakes`: show the user every candidate cut and apply only the approved ones. Never skip this review.
-4. Graphics, captions and render with HyperFrames' own skills, starting at `/hyperframes`. Use `talking-head-recut` for cards on the cut video, branded from the project's `DESIGN.md`. Put plain captions in the same composition. Offer `embedded-captions` only if the user accepts its extra setup (bun, uv and a HyperFrames source build).
+4. Graphics, captions and render: start at `/hyperframes` with the cut video and let it choose its own workflow and skills. Brand everything from the project's `DESIGN.md`, and put the captions in the same composition. Never name HyperFrames' other skills here: they change between releases, and `/hyperframes` always routes to the current ones.
 5. Show the Studio preview before the final render.
 
 The cutting skills mention `validate-beat-sync.mjs` and a "motion graphics agent"; neither applies here, so step 4 follows step 3. Run HyperFrames through `npx hyperframes`, and don't upgrade it in the middle of a project.
