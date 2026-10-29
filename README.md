@@ -14,7 +14,8 @@ Record yourself talking to camera. Claude cuts the pauses and the slips, then ad
 - **Never** put special category patient health data into a Claude chat.
 - **Never** give Claude access to folders or files that hold it.
 - **Never** connect Claude to systems that hold it.
-- Staff only on camera: no patients, no patient names, no screens from your clinic systems.
+- Patients can appear in your clinic's videos only with their explicit written consent: separate from consent to treatment, naming where the video will be published, and theirs to withdraw at any time. Even then, edit those recordings somewhere else, not here: a video showing a patient holds their health data.
+- Recordings you edit here: no patients, no patient names, no screens from your clinic systems.
 
 ## Setup
 
@@ -22,7 +23,7 @@ Create a folder called `Claude-video-editing` in your Documents, open it in Clau
 
 ### 1. Install
 
-> Set up the clinic video editing starter from https://github.com/<owner>/claude-video-editing directly in this folder, not in a subfolder. Install anything my computer is missing: Node 22 or newer, Git, FFmpeg 7 or newer, and Chrome. Then install HyperFrames and its official skills from heygen-com/hyperframes using HyperFrames' own installer, so Claude Code can use them. Done when `npx hyperframes doctor` passes, a five-second HyperFrames test video renders, and the cut-silences script runs in plan-only mode on a short made-up transcript. If I need to do something myself, such as typing my password, tell me exactly what to run. Finish by telling me to start a new conversation in this folder.
+> Set up the clinic video editing starter from https://github.com/clinic-aios/claude-video-editing directly in this folder, not in a subfolder. Install anything my computer is missing: Node 22 or newer, Git, FFmpeg 7 or newer, and Chrome. Then install HyperFrames and its official skills from heygen-com/hyperframes using HyperFrames' own installer, so Claude Code can use them. Done when `npx hyperframes doctor` passes, a five-second HyperFrames test video renders, and the cut-silences script runs in plan-only mode on a short made-up transcript. If I need to do something myself, such as typing my password, tell me exactly what to run. Finish by telling me to start a new conversation in this folder.
 
 ### 2. Make it mine
 
