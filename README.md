@@ -48,7 +48,7 @@ Your settings, keys, media and videos are never touched by an update.
 - `AGENTS.md`: the clinic rules and the editing order the AI assistant follows. `CLAUDE.md` loads them for Claude; Codex and other tools read `AGENTS.md` directly.
 - `SETUP.md`: the setup guide the assistant follows, including fixes for common computer problems.
 - `SKILLS.md`: the editing skills in this starter, and how to add one.
-- `.claude/skills/`: the skills themselves (`.agents/skills` links to the same folder for Codex).
+- `.claude/skills/` and `.agents/skills/`: the skills, in two identical copies. The first is for Claude Code, the second for Codex and other tools. Add your own skills to the one your app uses.
 
 HyperFrames (the video engine) and its skills, and Kie's skill, are fetched from their makers during setup. They aren't stored in this repo, and their skills load only in this folder.
 

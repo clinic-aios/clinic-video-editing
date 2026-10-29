@@ -108,7 +108,7 @@ From here on, read this guide from the local `SETUP.md`.
 
 HyperFrames is HeyGen's free video engine. It makes the graphics, captions and final videos. Run every command with `npx --yes` so it never stops to ask a question.
 
-Its skills live in this folder only, so they don't load in the person's other AI projects. `.agents/skills` links to `.claude/skills`, so Codex and other tools see the same skills.
+Its skills live in this folder only, so they don't load in the person's other AI projects. Skills go in your app's skills folder (`.claude/skills/` in Claude Code, `.agents/skills/` in Codex and other tools). The starter's own skills are already in both.
 - Never run `npx hyperframes skills` or `skills update`: those install for the whole computer.
 - Any `npx hyperframes init` must have `--skip-skills` or start with `HYPERFRAMES_SKIP_SKILLS=1`. Otherwise it quietly installs skills for the whole computer too.
 - `.claude/settings.json` sets `HYPERFRAMES_SKIP_SKILLS=1` for every conversation after this one.
@@ -116,7 +116,7 @@ Its skills live in this folder only, so they don't load in the person's other AI
 1. **Usage statistics off.** HyperFrames and the skills installer send anonymous usage statistics unless told not to. For a clinic, switch them off:
    - Check: `npx --yes hyperframes telemetry status` says disabled. If not, run `npx --yes hyperframes telemetry disable`.
    - Start every skills install or update with `DO_NOT_TRACK=1`, as the commands below do.
-2. **Its skills, into this folder.** Check: `.claude/skills/hyperframes/SKILL.md` exists here. If not:
+2. **Its skills, into this folder.** Check: `hyperframes/SKILL.md` exists in your app's skills folder (`.claude/skills/` in Claude Code, `.agents/skills/` in Codex and other tools). If not, run this. In Codex or another tool, use `--agent codex` in place of `--agent claude-code`:
    ```bash
    DO_NOT_TRACK=1 HYPERFRAMES_SKIP_SKILLS=1 npx --yes skills add heygen-com/hyperframes --skill hyperframes --skill hyperframes-cli --skill hyperframes-registry --skill media-use --agent claude-code --copy --full-depth --yes
    ```
@@ -137,7 +137,7 @@ Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI imag
 - If `my-clinic.md` says `Kie.ai: later`, skip this step without asking.
 - If the person has no Kie.ai account, skip it and remember to write `Kie.ai: later` in step 6. Tell them they can say "set up Kie" any time to come back to this step.
 
-1. **Kie's skill, into this folder.** Check: `.claude/skills/kie-models/SKILL.md` exists here. If not:
+1. **Kie's skill, into this folder.** Check: `kie-models/SKILL.md` exists in your app's skills folder. If not, run this, with `--agent codex` in Codex or another tool:
    ```bash
    DO_NOT_TRACK=1 npx --yes skills add https://kie.ai --skill kie-models --agent claude-code --copy --yes
    ```
@@ -226,7 +226,7 @@ Run this when the person asks to update ("update my video editing setup"):
    - show them `git status`;
    - their own settings belong in `my-clinic.md`, which updates never touch;
    - ask before discarding any change.
-3. **HyperFrames' skills:** re-run the command in step 4.2. It fetches the latest from HeyGen's GitHub and replaces the copies in this folder. Add the name of any other HyperFrames skill already in `.claude/skills/`.
+3. **HyperFrames' skills:** re-run the command in step 4.2. It fetches the latest from HeyGen's GitHub and replaces the copies in this folder. Add the name of any other HyperFrames skill already in your app's skills folder.
 4. **Kie's skill:** re-run the command in step 5.1, but only if `my-clinic.md` says `Kie.ai: set up`.
 5. **Run step 7 again**, then they start a new conversation. Re-running it overwrites the old test files, so there's nothing to delete first.
 
@@ -244,7 +244,6 @@ Run this when the person asks to update ("update my video editing setup"):
 | Windows: a tool installed fine but "is not recognized" | The AI app needs a restart (step 2, Windows). |
 | Windows: "running scripts is disabled on this system" | Use `npx.cmd` instead of `npx`. Never change the execution policy. |
 | Windows: Parakeet fails with a missing DLL or "VC++" | `winget install --id Microsoft.VCRedist.2015+.x64 -e`, restart the AI app, then install Parakeet again. |
-| Windows, Codex only: skills don't show up, and `.agents/skills` is a small file rather than a folder | Git on Windows doesn't recreate links by default. Replace it with a folder link, which needs no administrator rights: `rm .agents/skills && cmd //c 'mklink /J .agents\skills .claude\skills'`. Claude doesn't use this link. |
 | `npx` asks "Ok to proceed?" | Use `npx --yes`. |
 | Certificate errors (`SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_GET_ISSUER_CERT`) | The network inspects traffic, which is common on clinic Wi-Fi. Try another network, such as home or a phone hotspot. Never turn off certificate checks. |
 | Timeouts or `EAI_AGAIN` | Network blip. Wait a minute and try once more. |

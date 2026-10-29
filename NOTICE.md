@@ -7,7 +7,7 @@
 
 ## Bundled from Nate Herk's HyperFrames Student Kit
 
-Source: [github.com/nateherkai/hyperframes-student-kit](https://github.com/nateherkai/hyperframes-student-kit), commit `10511e5af86fc47756ea89803b397422e2d89284` (2026-10-14). Copied unchanged:
+Source: [github.com/nateherkai/hyperframes-student-kit](https://github.com/nateherkai/hyperframes-student-kit), commit `10511e5af86fc47756ea89803b397422e2d89284` (2026-10-14). Copied unchanged, into both `.claude/skills/` and `.agents/skills/`:
 
 | File | Purpose |
 | --- | --- |
@@ -32,6 +32,6 @@ Only when one of these happens:
 
 How:
 1. Shallow-clone the kit: `git clone --depth 1 https://github.com/nateherkai/hyperframes-student-kit.git`.
-2. Copy the same paths from the kit's `.claude/skills/` and `scripts/`, plus `LICENSE` and `licenses/PIPELINE-USE-PERMISSION.txt`, unchanged. Never patch them here.
+2. Copy the same paths from the kit's `.claude/skills/` (into both `.claude/skills/` and `.agents/skills/` here) and `scripts/`, plus `LICENSE` and `licenses/PIPELINE-USE-PERMISSION.txt`, unchanged. Never patch them here.
 3. Confirm the skills' commands still say `node .claude/skills/…`.
 4. Update the commit and date above, run `SETUP.md` step 7, then publish.

@@ -1,6 +1,6 @@
 # Skills
 
-This starter's own skills live in `.claude/skills/`, one folder each. `.agents/skills` is a link to the same folder, so Codex and other tools see them too: add and edit skills in `.claude/skills/` only. Members get every change here when they say "update my video editing setup".
+This starter's own skills come in two identical copies, one folder per skill: `.claude/skills/` for Claude Code and `.agents/skills/` for Codex and other tools. Their commands say `node .claude/skills/…`, which works in either app because the repo ships both folders. Members get every change here when they say "update my video editing setup".
 
 | Skill | What it does | Source | Added |
 | --- | --- | --- | --- |
@@ -11,7 +11,7 @@ This starter's own skills live in `.claude/skills/`, one folder each. `.agents/s
 
 Shared helper: `cut-mistakes` expects its review page at `scripts/build-edl-review.mjs` (Nate's, unchanged).
 
-**Installed into each member's `.claude/skills/` by `SETUP.md`, but kept out of git.** They load only in this folder, never in the member's other AI projects:
+**Installed into each member's skills folder by `SETUP.md`, but kept out of git.** They load only in this folder, never in the member's other AI projects:
 - HyperFrames' four core skills (`hyperframes`, `hyperframes-cli`, `hyperframes-registry`, `media-use`; the front door is the `hyperframes` skill), fetched from HeyGen's GitHub;
 - Kie's `kie-models`.
 
@@ -19,7 +19,9 @@ Shared helper: `cut-mistakes` expects its review page at `scripts/build-edl-revi
 
 ## Adding a skill
 
-1. **Give it its own folder:** `.claude/skills/<name>/SKILL.md`. Anything it needs (`scripts/`, `references/`) goes inside that folder. Write commands as `node .claude/skills/<name>/scripts/<file>.mjs`, run from the top of the workspace.
+1. **Give it its own folder:** `<name>/SKILL.md`. Anything it needs (`scripts/`, `references/`) goes inside that folder. Write commands with the path from the top of the workspace, such as `node .claude/skills/<name>/scripts/<file>.mjs`.
+   - **A member's own skill** goes in their app's folder only: `.claude/skills/` for Claude Code, `.agents/skills/` for Codex.
+   - **A starter skill** goes in both. Write it in `.claude/skills/`, then copy it across with `rsync -a --delete .claude/skills/<name>/ .agents/skills/<name>/`.
 2. **Keep it self-contained:**
    - Clinic-wide rules live in `AGENTS.md`, not in skills.
    - Only name this starter's skills and the `hyperframes` skill, never HyperFrames' inner skills: they change between releases.
@@ -29,6 +31,6 @@ Shared helper: `cut-mistakes` expects its review page at `scripts/build-edl-revi
 
 ## Changing or removing a skill
 
-- **Change:** edit the skill and commit. For someone else's skill, mark it "modified" in its Source cell and in `NOTICE.md`.
-- **Remove:** delete its folder and its row. If `AGENTS.md`'s running order names it, update that too.
+- **Change:** edit the skill in `.claude/skills/`, copy it across with the same `rsync` command, and commit. `diff -rq .claude/skills .agents/skills` prints nothing when the two copies match. For someone else's skill, mark it "modified" in its Source cell and in `NOTICE.md`.
+- **Remove:** delete its folder from both copies, and its row. If `AGENTS.md`'s running order names it, update that too.
 - **Test** with `SETUP.md` step 7, which runs the first three skills on a test clip.
