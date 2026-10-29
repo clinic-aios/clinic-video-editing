@@ -244,6 +244,7 @@ Run this when the person asks to update ("update my video editing setup"):
 | Windows: a tool installed fine but "is not recognized" | The AI app needs a restart (step 2, Windows). |
 | Windows: "running scripts is disabled on this system" | Use `npx.cmd` instead of `npx`. Never change the execution policy. |
 | Windows: Parakeet fails with a missing DLL or "VC++" | `winget install --id Microsoft.VCRedist.2015+.x64 -e`, restart the AI app, then install Parakeet again. |
+| Windows, Codex only: skills don't show up, and `.agents/skills` is a small file rather than a folder | Git on Windows doesn't recreate links by default. Replace it with a folder link, which needs no administrator rights: `rm .agents/skills && cmd //c 'mklink /J .agents\skills .claude\skills'`. Claude doesn't use this link. |
 | `npx` asks "Ok to proceed?" | Use `npx --yes`. |
 | Certificate errors (`SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_GET_ISSUER_CERT`) | The network inspects traffic, which is common on clinic Wi-Fi. Try another network, such as home or a phone hotspot. Never turn off certificate checks. |
 | Timeouts or `EAI_AGAIN` | Network blip. Wait a minute and try once more. |
