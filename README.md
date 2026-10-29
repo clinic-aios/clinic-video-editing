@@ -1,13 +1,13 @@
 # Clinic Video Editing
 
-Record yourself talking to camera. Claude cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website.
+Record yourself talking to camera. Claude cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Everything runs on your own computer.
 
 ## What you need
 
 - Claude Desktop, using its **Code** tab.
-- Your clinic's design system in Claude.
-- A [Kie.ai](https://kie.ai) account with credits, for generated images, clips and music.
-- Optional: an [ElevenLabs](https://elevenlabs.io) API key for transcription. Without one, transcription runs on your computer.
+- A Mac or Windows PC you can install software on, with about 5 GB free.
+- Optional: your clinic's design system in Claude, for brand colours and fonts.
+- Optional: a [Kie.ai](https://kie.ai) account with credits, for generated images, clips and music.
 
 ## Patient data: read this first
 
@@ -17,32 +17,43 @@ Record yourself talking to camera. Claude cuts the pauses and the slips, then ad
 - Patients can appear in your clinic's videos only with their explicit written consent: separate from consent to treatment, naming where the video will be published, and theirs to withdraw at any time. Even then, edit those recordings somewhere else, not here: a video showing a patient holds their health data.
 - Recordings you edit here: no patients, no patient names, no screens from your clinic systems.
 
-## Setup
+## Set up
 
-Create a folder called `clinic-video-editing` in your Documents, open it in Claude Code, and paste these prompts one at a time.
+1. Create a folder called `clinic-video-editing` in your home folder. Avoid Desktop and Documents if they sync to iCloud or OneDrive.
+2. Open it in Claude's **Code** tab.
+3. Paste this:
 
-### 1. Install
+> Set up clinic video editing in this folder. Download the setup guide with `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`, read all of it and follow it. Coach me one step at a time in plain English, and help me through anything that goes wrong on my computer.
 
-> Set up the clinic video editing starter from https://github.com/clinic-aios/clinic-video-editing directly in this folder, not in a subfolder. Install anything my computer is missing: Node 22 or newer, Git, FFmpeg 7 or newer, and Chrome. Then install HyperFrames and its official skills from heygen-com/hyperframes using HyperFrames' own installer, so Claude Code can use them. Done when `npx hyperframes doctor` passes, a five-second HyperFrames test video renders, and the cut-silences script runs in plan-only mode on a short made-up transcript. If I need to do something myself, such as typing my password, tell me exactly what to run. Finish by telling me to start a new conversation in this folder.
+Claude checks your computer, installs what's missing, tells you which pop-ups to expect, and finishes by making a short test video. Setup takes 20–40 minutes, mostly downloads.
 
-### 2. Make it mine
-
-> Create my-clinic.md for my clinic: [clinic name], design system [link], we publish to [YouTube / Instagram / Facebook / LinkedIn / website]. Check you can read the design system and tell me my brand colours and fonts. Create the media-library folders. Done when a fresh conversation in this folder can tell me my brand colours.
-
-### 3. Connect services
-
-> Connect Kie.ai using Kie's own Claude skill, and make sure you can transcribe my recordings word by word: use ElevenLabs if I give you a key, otherwise HyperFrames' local transcription. Tell me where to put each key, and don't ask me to paste them into this chat. Always tell me the credit cost before any generation. Done when one cheap test image is saved in media-library/kie and a ten-second test recording of me is transcribed.
-
-### 4. Update (whenever a new version is announced)
-
-> Update this starter from its GitHub repo, and update HyperFrames' engine and skills and Kie's skill. My my-clinic.md, .env, media-library and video-projects must not change. Check the HyperFrames test still renders.
+If setup stops part-way, for a restart, a pop-up or a break, open the folder again and say **"continue setup"**. Claude checks what's done and carries on.
 
 ## Your first edit
 
+Start a new conversation in the folder and say:
+
 > Edit my recording at [path] for [Instagram reel / YouTube / website]. Cut the pauses and show me the mistake cuts before applying them, then add on-brand captions and graphics. Show me the preview before the final render.
+
+## Keeping it up to date
+
+When you're between videos, say:
+
+> Update my video editing setup.
+
+Your settings, keys, media and videos are never touched by an update.
+
+## What's inside
+
+- `CLAUDE.md`: the clinic rules and the editing order Claude follows.
+- `SETUP.md`: the setup guide Claude follows, including fixes for common computer problems.
+- `SKILLS.md`: the editing skills in this starter, and how to add one.
+- `.claude/skills/`: the skills themselves.
+
+HyperFrames (the video engine) and Kie's skill are installed by their makers' own installers, not stored here.
 
 ## Credits
 
-- The cutting skills are by Nate Herk, from his [HyperFrames Student Kit](https://github.com/nateherkai/hyperframes-student-kit). See `NOTICE.md`.
 - [HyperFrames](https://github.com/heygen-com/hyperframes) is by HeyGen.
+- The cutting skills are by Nate Herk, from his [HyperFrames Student Kit](https://github.com/nateherkai/hyperframes-student-kit). See `NOTICE.md`.
 - Generated media comes from [Kie.ai](https://kie.ai).

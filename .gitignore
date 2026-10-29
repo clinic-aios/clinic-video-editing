@@ -1,4 +1,4 @@
-# Each clinic's own settings, keys and media stay on their machine
+# Each clinic's own settings, keys and media stay on their computer
 my-clinic.md
 .env
 .env.*
@@ -9,15 +9,16 @@ renders/
 *.mov
 *.m4a
 *.wav
+*.aiff
 *.mp3
 
-# Third-party skills installed locally (HyperFrames, Kie); only ours are tracked
-.claude/skills/*
-!.claude/skills/cut-silences/
-!.claude/skills/cut-mistakes/
+# Everything in .claude/skills/ is this starter's own and tracked. HyperFrames' and
+# Kie's skills install per user, so these only appear after a stray project install.
 .agents/
 skills-lock.json
 .claude/settings.local.json
 
 node_modules/
 .DS_Store
+Thumbs.db
+desktop.ini
