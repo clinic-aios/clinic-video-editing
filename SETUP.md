@@ -16,8 +16,7 @@ Repo: `https://github.com/clinic-aios/clinic-video-editing`
   - Never run `sudo`.
   - On a Mac, anything that needs the computer's password runs in a Terminal window you open for them (step 2). They type the password there.
   - On Windows, they approve the "make changes" pop-up themselves.
-  - API keys go into `.env`, which they edit in TextEdit or Notepad.
-  - Never read `.env` aloud or print its contents.
+  - The Kie key goes into `.env` only through the `kie` skill's script (step 5). Never read, write or print `.env` yourself.
 - **Stay inside this guide.**
   - Install only what it lists.
   - Never change security settings, turn off antivirus or firewall protection, change PowerShell's execution policy, or skip certificate checks.
@@ -133,27 +132,12 @@ Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI imag
    ```bash
    DO_NOT_TRACK=1 npx --yes skills add https://kie.ai --skill kie-models --global --agent claude-code --copy --yes
    ```
-2. **The key, straight from their clipboard.** They never paste it anywhere.
-   - Ask them to sign in at kie.ai/api-key, copy their key (its copy button), and say "copied".
-   - Write it into `.env` without showing it. `.env` holds only this key, so writing over it is fine:
-     - Mac:
-       ```bash
-       printf 'KIE_API_KEY=%s\n' "$(pbpaste | tr -d '\r\n ')" > .env
-       ```
-     - Windows:
-       ```bash
-       printf 'KIE_API_KEY=%s\n' "$(powershell -NoProfile -Command Get-Clipboard | tr -d '\r\n ')" > .env
-       ```
-   - Check its length without showing it: `grep '^KIE_API_KEY=' .env | cut -d= -f2- | tr -d '\n' | wc -c`. Under 20 means the clipboard held something else, so they copy the key again.
-   - **If the clipboard route won't work:**
-     1. Create the file with `printf 'KIE_API_KEY=\n' > .env`.
-     2. Open it with `open -e .env` (Mac) or `notepad .env` (Windows).
-     3. They paste the key straight after the `=`, then save and close.
-3. **Test it for free** by asking for the credit balance. The first half loads the key without printing it, and strips any hidden line endings and spaces:
-   ```bash
-   export KIE_API_KEY="$(grep '^KIE_API_KEY=' .env | cut -d= -f2- | tr -d '\r\n ')"; curl -s -H "Authorization: Bearer $KIE_API_KEY" https://api.kie.ai/api/v1/chat/credit
-   ```
-   It should print a balance. A 401 means the key is wrong, so they copy it again and say "copied".
+2. **The key.** Never touch `.env` yourself: Claude's tools are blocked from it, and the `kie` skill's script is the only thing that reads or writes it.
+   1. Ask them to sign in at kie.ai/api-key, copy their key (its copy button), and say "copied". They never paste it anywhere.
+   2. Run `node .claude/skills/kie/scripts/kie.mjs set-key`. It saves the key from the clipboard and prints only its length.
+   3. If it says the clipboard doesn't hold a key, they copy it again.
+   4. If the clipboard can't be read at all, run `edit-key` instead. It opens the file in TextEdit or Notepad: they paste the key after `KIE_API_KEY=`, then save and close.
+3. **Test it for free:** `node .claude/skills/kie/scripts/kie.mjs balance` should print a credit balance. If it says the key is wrong, they copy it again and say "copied".
 
 When it works, set the `Kie.ai` line in `my-clinic.md` to `set up`, if the file exists.
 

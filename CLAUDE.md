@@ -53,13 +53,14 @@ When a brand image or film is used, save a local copy in `media-library/brand/`.
 
 - `video-projects/<slug>/`: one folder per video. It holds the recording, `assets/` (transcripts, cuts and the cut videos, as the cutting skills expect), the composition and `renders/`.
 - `media-library/`: shared media in `brand/`, `kie/` and `b-roll/`. Projects use files from here rather than copying them about.
-- `.env`: `KIE_API_KEY`.
+- `.env`: the Kie key. It's off limits: only the `kie` skill's script reads or writes it.
 - All of these, and `my-clinic.md`, are gitignored and stay on this computer.
 
 ## Kie.ai
 
-- Use Kie's own skill, `kie-models`, for images, video clips and music.
+- For images, video clips and music:
+  - choose the model, its input and its price with Kie's own skill, `kie-models`;
+  - send every request through this starter's `kie` skill, never with curl and the key.
 - If `my-clinic.md` says `Kie.ai: later`, offer to set it up with `SETUP.md` step 5 before the first generation.
-- Load the key into the command without printing it: `export KIE_API_KEY="$(grep '^KIE_API_KEY=' .env | cut -d= -f2- | tr -d '\r\n ')"`.
 - Before every generation, state the model and the credit cost, and wait for a yes.
 - Save outputs to `media-library/kie/` and keep the task id.
