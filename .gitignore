@@ -12,8 +12,15 @@ renders/
 *.aiff
 *.mp3
 
-# Everything in .claude/skills/ is this starter's own and tracked. HyperFrames' and
-# Kie's skills install per user, so these only appear after a stray project install.
+# HyperFrames' and Kie's skills, installed into this folder by SETUP.md: theirs, not ours.
+# Every other folder in .claude/skills/ is this starter's own and tracked.
+.claude/skills/hyperframes/
+.claude/skills/hyperframes-*/
+.claude/skills/media-use/
+.claude/skills/figma/
+.claude/skills/slideshow/
+.claude/skills/remotion-to-hyperframes/
+.claude/skills/kie-models/
 .agents/
 skills-lock.json
 .claude/settings.local.json

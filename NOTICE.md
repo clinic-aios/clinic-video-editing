@@ -19,7 +19,7 @@ Licences: MIT (`licenses/NATE-HERK-STUDENT-KIT-LICENSE`) and the kit's use permi
 
 ## Installed on each computer, not bundled
 
-- **HyperFrames** and its skills, by HeyGen: [github.com/heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) (Apache-2.0). Installed and updated by HyperFrames' own installer. It downloads its own Chrome for rendering, and NVIDIA's Parakeet speech model for transcription.
+- **HyperFrames** and its skills, by HeyGen: [github.com/heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) (Apache-2.0). Its four core skills are fetched from HeyGen's GitHub into each member's folder during setup. It downloads its own Chrome for rendering, and NVIDIA's Parakeet speech model for transcription.
 - **`kie-models`**, Kie.ai's skill for its generation API: [kie.ai](https://kie.ai).
 - **FFmpeg, Node, Git**: each under its own licence.
 

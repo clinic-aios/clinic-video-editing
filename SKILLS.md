@@ -11,9 +11,11 @@ This starter's own skills live in `.claude/skills/`, one folder each. Members ge
 
 Shared helper: `cut-mistakes` expects its review page at `scripts/build-edl-review.mjs` (Nate's, unchanged).
 
-**Installed separately, not in this repo.** These are set up by `SETUP.md` and updated by their makers:
-- HyperFrames' skills (front door: `/hyperframes`);
+**Installed into each member's `.claude/skills/` by `SETUP.md`, but kept out of git.** They load only in this folder, never in the member's other Claude projects:
+- HyperFrames' four core skills (`hyperframes`, `hyperframes-cli`, `hyperframes-registry`, `media-use`; front door `/hyperframes`), fetched from HeyGen's GitHub;
 - Kie's `kie-models`.
+
+`.gitignore` lists their names. So don't name a skill of ours `hyperframes-…`; anything else is tracked automatically.
 
 ## Adding a skill
 

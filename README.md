@@ -50,7 +50,7 @@ Your settings, keys, media and videos are never touched by an update.
 - `SKILLS.md`: the editing skills in this starter, and how to add one.
 - `.claude/skills/`: the skills themselves.
 
-HyperFrames (the video engine) and Kie's skill are installed by their makers' own installers, not stored here.
+HyperFrames (the video engine) and its skills, and Kie's skill, are fetched from their makers during setup. They aren't stored in this repo, and their skills load only in this folder.
 
 ## Credits
 

@@ -39,6 +39,11 @@ Coach the person through any problem their computer throws up, as the guide desc
 
 The cutting skills mention ElevenLabs, `validate-beat-sync.mjs` and a "motion graphics agent". None of these applies here: transcription is step 1, and step 4 follows step 3. Run HyperFrames as `npx --yes hyperframes`, and don't update it in the middle of a video.
 
+HyperFrames' skills live in this folder, not the whole computer:
+- Never run `npx hyperframes skills` or `skills update`.
+- Give every `npx hyperframes init` `--skip-skills`.
+- If `/hyperframes` wants another of its skills, install it into this folder with `SETUP.md` step 4.2.
+
 The skills in this folder are listed in `SKILLS.md`.
 
 ## Brand

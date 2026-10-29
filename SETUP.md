@@ -108,10 +108,19 @@ From here on, read this guide from the local `SETUP.md`.
 
 HyperFrames is HeyGen's free video engine. It makes the graphics, captions and final videos. Run every command with `npx --yes` so it never stops to ask a question.
 
+Its skills live in this folder only, so they don't load in the person's other Claude projects.
+- Never run `npx hyperframes skills` or `skills update`: those install for the whole computer.
+- Any `npx hyperframes init` must have `--skip-skills` or start with `HYPERFRAMES_SKIP_SKILLS=1`. Otherwise it quietly installs skills for the whole computer too.
+- `.claude/settings.json` sets `HYPERFRAMES_SKIP_SKILLS=1` for every conversation after this one.
+
 1. **Usage statistics off.** HyperFrames and the skills installer send anonymous usage statistics unless told not to. For a clinic, switch them off:
    - Check: `npx --yes hyperframes telemetry status` says disabled. If not, run `npx --yes hyperframes telemetry disable`.
    - Start every skills install or update with `DO_NOT_TRACK=1`, as the commands below do.
-2. **Its skills.** Check: `~/.claude/skills/hyperframes/SKILL.md` exists. If not, run `DO_NOT_TRACK=1 npx --yes hyperframes skills`. That installs them for the person's user account, not into this folder.
+2. **Its skills, into this folder.** Check: `.claude/skills/hyperframes/SKILL.md` exists here. If not:
+   ```bash
+   DO_NOT_TRACK=1 HYPERFRAMES_SKIP_SKILLS=1 npx --yes skills add heygen-com/hyperframes --skill hyperframes --skill hyperframes-cli --skill hyperframes-registry --skill media-use --agent claude-code --copy --full-depth --yes
+   ```
+   That installs HyperFrames' four core skills from HeyGen's GitHub. If `/hyperframes` later asks for another of its skills (such as `slideshow`), run the same command with that name in place of the four.
 3. **Its own Chrome**, used for rendering: `npx --yes hyperframes browser ensure`. This is a download of about 200 MB, separate from any Chrome they use.
 4. **The speech model**, for transcription on this computer. Check: `npx --yes hyperframes models list` shows parakeet "installed". If not, run `npx --yes hyperframes models install parakeet`. It's about 650 MB and takes a few minutes.
 5. **Health check:** `npx --yes hyperframes doctor`.
@@ -128,9 +137,9 @@ Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI imag
 - If `my-clinic.md` says `Kie.ai: later`, skip this step without asking.
 - If the person has no Kie.ai account, skip it and remember to write `Kie.ai: later` in step 6. Tell them they can say "set up Kie" any time to come back to this step.
 
-1. **Kie's skill.** Check: `~/.claude/skills/kie-models/SKILL.md` exists. If not:
+1. **Kie's skill, into this folder.** Check: `.claude/skills/kie-models/SKILL.md` exists here. If not:
    ```bash
-   DO_NOT_TRACK=1 npx --yes skills add https://kie.ai --skill kie-models --global --agent claude-code --copy --yes
+   DO_NOT_TRACK=1 npx --yes skills add https://kie.ai --skill kie-models --agent claude-code --copy --yes
    ```
 2. **The key.** Never touch `.env` yourself: Claude's tools are blocked from it, and the `kie` skill's script is the only thing that reads or writes it.
    1. Ask them to sign in at kie.ai/api-key and copy their key (its copy button).
@@ -217,7 +226,7 @@ Run this when the person asks to update ("update my video editing setup"):
    - show them `git status`;
    - their own settings belong in `my-clinic.md`, which updates never touch;
    - ask before discarding any change.
-3. **HyperFrames' skills:** `DO_NOT_TRACK=1 npx --yes hyperframes skills update`.
+3. **HyperFrames' skills:** re-run the command in step 4.2. It fetches the latest from HeyGen's GitHub and replaces the copies in this folder. Add the name of any other HyperFrames skill already in `.claude/skills/`.
 4. **Kie's skill:** re-run the command in step 5.1, but only if `my-clinic.md` says `Kie.ai: set up`.
 5. **Run step 7 again**, then they start a new conversation. Re-running it overwrites the old test files, so there's nothing to delete first.
 
