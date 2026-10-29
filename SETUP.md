@@ -38,7 +38,12 @@ Repo: `https://github.com/clinic-aios/clinic-video-editing`
   - its path contains `OneDrive`, `iCloud`, `Mobile Documents`, `CloudStorage`, `Dropbox` or `Google Drive`;
   - or, on a Mac, it's inside Documents or Desktop and `~/Library/Mobile Documents/com~apple~CloudDocs/Documents` exists.
 
-  If it is synced, recommend a folder called `clinic-video-editing` in their home folder instead (`/Users/<name>/` or `C:\Users\<name>\`). Explain how to create it and open it in Claude, then stop. When they're there, they paste the setup prompt again. If they'd rather stay, carry on.
+  If it is synced, and `CLAUDE.md` isn't here yet (if it is, they've already chosen to stay, so don't ask again):
+  - recommend a folder in their home folder instead;
+  - offer to create it for them: `mkdir -p ~/clinic-video-editing`;
+  - then walk them through opening it. In Claude's Code tab, they choose the folder, go to their home folder (the one with their name), pick `clinic-video-editing`, and paste the setup prompt again there.
+
+  If they'd rather stay, carry on.
 
 ## 2. Tools
 
@@ -87,34 +92,40 @@ Check in this order, because running `git` on a fresh Mac pops up Apple's instal
 
 **Check:** `git remote get-url origin` prints the repo URL above, and `CLAUDE.md` exists here.
 
-If not, fetch it into this folder. This works even if the folder already has files in it:
+If not, fetch it into this folder. This works even if the folder already has files in it, and it's safe to run again:
 
 ```bash
-git init && git remote add origin https://github.com/clinic-aios/clinic-video-editing && git fetch origin && git checkout -t origin/main
+[ -d .git ] || git init; git remote get-url origin >/dev/null 2>&1 || git remote add origin https://github.com/clinic-aios/clinic-video-editing; git fetch origin && git checkout -t origin/main
 ```
 
-If git says files "would be overwritten", list them and ask the person what they are before doing anything else. From here on, read this guide from the local `SETUP.md`.
+If git says files "would be overwritten", they're the person's own files with the same names as the starter's.
+1. List them and ask what they are.
+2. Usually the answer is to keep them under a new name, for example `mv -n README.md my-old-README.md`. Never delete them.
+3. Run the command again.
+
+From here on, read this guide from the local `SETUP.md`.
 
 ## 4. HyperFrames
 
 HyperFrames is HeyGen's free video engine. It makes the graphics, captions and final videos. Run every command with `npx --yes` so it never stops to ask a question.
 
 1. **Usage statistics off.** HyperFrames and the skills installer send anonymous usage statistics unless told not to. For a clinic, switch them off:
-   - run `npx --yes hyperframes telemetry disable` once;
-   - start every skills install or update with `DO_NOT_TRACK=1`, as the commands below do.
+   - Check: `npx --yes hyperframes telemetry status` says disabled. If not, run `npx --yes hyperframes telemetry disable`.
+   - Start every skills install or update with `DO_NOT_TRACK=1`, as the commands below do.
 2. **Its skills.** Check: `~/.claude/skills/hyperframes/SKILL.md` exists. If not, run `DO_NOT_TRACK=1 npx --yes hyperframes skills`. That installs them for the person's user account, not into this folder.
 3. **Its own Chrome**, used for rendering: `npx --yes hyperframes browser ensure`. This is a download of about 150 MB, separate from any Chrome they use.
 4. **The speech model**, for transcription on this computer. Check: `npx --yes hyperframes models list` shows parakeet "installed". If not, run `npx --yes hyperframes models install parakeet`. It's about 600 MB and takes a few minutes.
 5. **Health check:** `npx --yes hyperframes doctor`.
    - The lines that matter are Node.js, FFmpeg, FFprobe and Chrome.
    - Docker, TTS (Kokoro), BGM (MusicGen) and whisper-cpp are optional, so ignore a ✗ on those.
-   - Don't run the install hints it prints for them; one even contains `sudo`.
+   - Don't run the install hints it prints for them; one even contains `sudo`. A stray `docker: command not found` line is normal too.
+   - HyperFrames sometimes suggests its desktop app (`hyperframes open`). This setup doesn't use it, so skip it.
 
 **Done when** those four lines show ✓ and parakeet is installed.
 
 ## 5. Kie.ai (generated images, clips and music)
 
-Optional.
+Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI images, short video clips and music. They buy credits on kie.ai, each thing it makes uses some, and Claude always says the cost and waits for a yes first.
 - If `my-clinic.md` says `Kie.ai: later`, skip this step without asking.
 - If the person has no Kie.ai account, skip it and remember to write `Kie.ai: later` in step 6. Tell them they can say "set up Kie" any time to come back to this step.
 
@@ -139,30 +150,29 @@ When it works, set the `Kie.ai` line in `my-clinic.md` to `set up`, if the file 
 
 **Check:** `my-clinic.md` exists.
 
-If not, ask for each of these, one at a time:
+If not, ask these one at a time, in this order:
 
-- the clinic's name;
-- its design system link (a claude.ai link). If they don't have one yet, write "not yet";
-- where their videos go (YouTube, Instagram, Facebook, LinkedIn, TikTok, website);
-- anything else to always remember, such as tone or words to avoid.
+1. **The clinic's name.**
+2. **Its design system.** This is the clinic's brand page made in Claude, with a link starting `https://claude.ai/`. If they don't know what that is, they don't have one yet, and that's fine.
+   - **With a link:** read it with the Artifact tool and tell them the brand colours and fonts you found.
+   - **Without one:** ask for two or three brand colours and a font, or offer to take them from the clinic's website. Ask whether there's a logo file. They can add a design system later.
+3. **Where their videos go:** YouTube, Instagram, Facebook, LinkedIn, TikTok or their website.
+4. **Anything to always remember,** such as tone or words to avoid.
 
-Then write it:
+Then write `my-clinic.md`:
 
 ```markdown
 # My clinic
 
 - Clinic: <name>
 - Design system: <link, or "not yet">
-- Brand (only when there's no design system): <logo file, 2–3 colours as hex, font>
+- Brand (only when there's no design system): <2–3 colours as hex, font, logo file or "no logo yet">
 - We publish to: <channels>
 - Kie.ai: <set up, or later>
 - Always remember: <notes>
 ```
 
-**Brand:**
-- **With a design system link:** read it with the Artifact tool and tell them the brand colours and fonts you found.
-- **Without one:** ask for their logo and two or three brand colours, or offer to take them from the clinic's website. Fill in the Brand line from those. They can swap in a design system later.
-- **Either way:** offer to save the clinic's logo, photos and videos from its website into `media-library/brand/`, with no patients in any of them.
+Offer to save the clinic's logo, photos and videos from its website into `media-library/brand/`, with no patients in any of them.
 
 Create `media-library/brand/`, `media-library/kie/`, `media-library/b-roll/` and `video-projects/` if they're missing.
 
@@ -194,11 +204,13 @@ Run everything from this folder's top level. The test lives in `video-projects/s
    - `transcribe` names `parakeet`;
    - `assets/test.silenced.mp4` exists;
    - `assets/test.words.cut-candidates.md` lists the "how how" stutter.
+
+   The finder only catches stutters like that one. The restart and the "um" are left for Claude's own read of the transcript in a real edit (see `CLAUDE.md`). A misheard word, such as "verruca", is normal; names and terms get fixed in the captions.
 3. **A HyperFrames render.** Warn first: the computer may ask whether "chrome-headless-shell" or "node" may "accept incoming network connections". Deny is fine.
    ```bash
    (cd video-projects/setup-test && npx --yes hyperframes init render-test --example blank --non-interactive --skip-skills && cd render-test && npx --yes hyperframes render . --quality draft --output renders/test.mp4)
    ```
-   **Done when** `video-projects/setup-test/render-test/renders/test.mp4` exists. It takes under a minute.
+   **Done when** `video-projects/setup-test/render-test/renders/test.mp4` exists. It takes under a minute. HyperFrames puts its own `CLAUDE.md` and `AGENTS.md` inside each project it creates. Leave them alone: they only apply inside that project's folder.
 
 Tell them it all works. Then ask them to start a **new conversation** in this folder, because that's when Claude loads the clinic rules and the new skills. Suggest a first prompt from the README's "Your first edit".
 
