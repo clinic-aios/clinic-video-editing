@@ -113,8 +113,8 @@ HyperFrames is HeyGen's free video engine. It makes the graphics, captions and f
    - Check: `npx --yes hyperframes telemetry status` says disabled. If not, run `npx --yes hyperframes telemetry disable`.
    - Start every skills install or update with `DO_NOT_TRACK=1`, as the commands below do.
 2. **Its skills.** Check: `~/.claude/skills/hyperframes/SKILL.md` exists. If not, run `DO_NOT_TRACK=1 npx --yes hyperframes skills`. That installs them for the person's user account, not into this folder.
-3. **Its own Chrome**, used for rendering: `npx --yes hyperframes browser ensure`. This is a download of about 150 MB, separate from any Chrome they use.
-4. **The speech model**, for transcription on this computer. Check: `npx --yes hyperframes models list` shows parakeet "installed". If not, run `npx --yes hyperframes models install parakeet`. It's about 600 MB and takes a few minutes.
+3. **Its own Chrome**, used for rendering: `npx --yes hyperframes browser ensure`. This is a download of about 200 MB, separate from any Chrome they use.
+4. **The speech model**, for transcription on this computer. Check: `npx --yes hyperframes models list` shows parakeet "installed". If not, run `npx --yes hyperframes models install parakeet`. It's about 650 MB and takes a few minutes.
 5. **Health check:** `npx --yes hyperframes doctor`.
    - The lines that matter are Node.js, FFmpeg, FFprobe and Chrome.
    - Docker, TTS (Kokoro), BGM (MusicGen) and whisper-cpp are optional, so ignore a ✗ on those.
