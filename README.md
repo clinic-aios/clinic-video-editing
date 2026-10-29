@@ -19,11 +19,11 @@ Record yourself talking to camera. Claude cuts the pauses and the slips, then ad
 
 ## Setup
 
-Create a folder called `Claude-video-editing` in your Documents, open it in Claude Code, and paste these prompts one at a time.
+Create a folder called `clinic-video-editing` in your Documents, open it in Claude Code, and paste these prompts one at a time.
 
 ### 1. Install
 
-> Set up the clinic video editing starter from https://github.com/clinic-aios/claude-video-editing directly in this folder, not in a subfolder. Install anything my computer is missing: Node 22 or newer, Git, FFmpeg 7 or newer, and Chrome. Then install HyperFrames and its official skills from heygen-com/hyperframes using HyperFrames' own installer, so Claude Code can use them. Done when `npx hyperframes doctor` passes, a five-second HyperFrames test video renders, and the cut-silences script runs in plan-only mode on a short made-up transcript. If I need to do something myself, such as typing my password, tell me exactly what to run. Finish by telling me to start a new conversation in this folder.
+> Set up the clinic video editing starter from https://github.com/clinic-aios/clinic-video-editing directly in this folder, not in a subfolder. Install anything my computer is missing: Node 22 or newer, Git, FFmpeg 7 or newer, and Chrome. Then install HyperFrames and its official skills from heygen-com/hyperframes using HyperFrames' own installer, so Claude Code can use them. Done when `npx hyperframes doctor` passes, a five-second HyperFrames test video renders, and the cut-silences script runs in plan-only mode on a short made-up transcript. If I need to do something myself, such as typing my password, tell me exactly what to run. Finish by telling me to start a new conversation in this folder.
 
 ### 2. Make it mine
 
