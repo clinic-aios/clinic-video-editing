@@ -14,6 +14,7 @@ renders/
 
 # HyperFrames' and Kie's skills, installed into this folder by SETUP.md: theirs, not ours.
 # Every other folder in .claude/skills/ is this starter's own and tracked.
+# (.agents/skills is a tracked link to .claude/skills, so Codex sees the same skills.)
 .claude/skills/hyperframes/
 .claude/skills/hyperframes-*/
 .claude/skills/media-use/
@@ -21,7 +22,6 @@ renders/
 .claude/skills/slideshow/
 .claude/skills/remotion-to-hyperframes/
 .claude/skills/kie-models/
-.agents/
 skills-lock.json
 .claude/settings.local.json
 

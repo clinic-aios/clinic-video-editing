@@ -1,6 +1,6 @@
 # Setup guide
 
-**For the AI assistant.** The person asked you to set up clinic video editing in the folder you're working in. They may never have used a terminal. Follow this guide to the end, and coach them through anything their computer throws up.
+**For the AI assistant** (Claude Code, Codex or another). The person asked you to set up clinic video editing in the folder you're working in. They may never have used a terminal. Follow this guide to the end, and coach them through anything their computer throws up.
 
 Repo: `https://github.com/clinic-aios/clinic-video-editing`
 
@@ -9,7 +9,7 @@ Repo: `https://github.com/clinic-aios/clinic-video-editing`
 - **Check before you change.** Every step starts with a check. If it passes, say so in one line and move on. This makes the guide safe to run again: after a restart, or when the person says "continue setup", start at the top and the checks skip what's done.
 - **One step at a time, in plain English.** Before each step, say what it does and roughly how long it takes.
 - **Warn before every pop-up.** Each step names the pop-ups it can cause. Say what the pop-up will say and which button to press *before* running the command.
-  - Claude's own "allow this command?" prompts count too. Explain each command in one line so they can allow it.
+  - The AI app's own "allow this command?" prompts count too. Explain each command in one line so they can allow it.
   - Never suggest turning those prompts off.
 - **Keep a short progress list** (✓ done, → now, · to do) and show it after each step.
 - **Passwords and keys never go in the chat.**
@@ -37,10 +37,10 @@ Repo: `https://github.com/clinic-aios/clinic-video-editing`
   - its path contains `OneDrive`, `iCloud`, `Mobile Documents`, `CloudStorage`, `Dropbox` or `Google Drive`;
   - or, on a Mac, it's inside Documents or Desktop and `~/Library/Mobile Documents/com~apple~CloudDocs/Documents` exists.
 
-  If it is synced, and `CLAUDE.md` isn't here yet (if it is, they've already chosen to stay, so don't ask again):
+  If it is synced, and `AGENTS.md` isn't here yet (if it is, they've already chosen to stay, so don't ask again):
   - recommend a folder in their home folder instead;
   - offer to create it for them: `mkdir -p ~/clinic-video-editing`;
-  - then walk them through opening it. In Claude's Code tab, they choose the folder, go to their home folder (the one with their name), pick `clinic-video-editing`, and paste the setup prompt again there.
+  - then walk them through opening it. In their AI app's folder picker (in Claude Desktop, the Code tab's), they choose the folder, go to their home folder (the one with their name), pick `clinic-video-editing`, and paste the setup prompt again there.
 
   If they'd rather stay, carry on.
 
@@ -55,7 +55,7 @@ Check in this order, because running `git` on a fresh Mac pops up Apple's instal
 1. **Homebrew** (installs the others). Check with `brew --version`. If that fails, try `/opt/homebrew/bin/brew --version` (Apple silicon) or `/usr/local/bin/brew --version` (Intel). If none works, install it:
    - It needs their Mac password, so open it in its own Terminal window:
      ```bash
-     printf '%s\n' '#!/bin/bash' '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' 'echo; echo "Finished. You can close this window and go back to Claude."' > "$TMPDIR/install-homebrew.command" && chmod +x "$TMPDIR/install-homebrew.command" && open "$TMPDIR/install-homebrew.command"
+     printf '%s\n' '#!/bin/bash' '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' 'echo; echo "Finished. You can close this window and go back to the chat."' > "$TMPDIR/install-homebrew.command" && chmod +x "$TMPDIR/install-homebrew.command" && open "$TMPDIR/install-homebrew.command"
      ```
    - Tell them what to expect in that window:
      1. Type your Mac password. Nothing appears as you type, which is normal. Press Return.
@@ -83,13 +83,13 @@ Check in this order, because running `git` on a fresh Mac pops up Apple's instal
    winget install --id OpenJS.NodeJS.LTS -e --accept-package-agreements --accept-source-agreements
    winget install --id Gyan.FFmpeg -e --accept-package-agreements --accept-source-agreements
    ```
-3. **Restart Claude.** New tools aren't visible until Claude restarts. Ask them to quit Claude completely (not just close the window), reopen it, open this folder in the Code tab and say "continue setup".
+3. **Restart the AI app.** New tools aren't visible until the app restarts. Ask them to quit it completely (not just close the window), reopen it, open this folder again and say "continue setup".
 
 **Done when** all four checks pass.
 
 ## 3. The starter
 
-**Check:** `git remote get-url origin` prints the repo URL above, and `CLAUDE.md` exists here.
+**Check:** `git remote get-url origin` prints the repo URL above, and `AGENTS.md` exists here.
 
 If not, fetch it into this folder. This works even if the folder already has files in it, and it's safe to run again:
 
@@ -108,7 +108,7 @@ From here on, read this guide from the local `SETUP.md`.
 
 HyperFrames is HeyGen's free video engine. It makes the graphics, captions and final videos. Run every command with `npx --yes` so it never stops to ask a question.
 
-Its skills live in this folder only, so they don't load in the person's other Claude projects.
+Its skills live in this folder only, so they don't load in the person's other AI projects. `.agents/skills` links to `.claude/skills`, so Codex and other tools see the same skills.
 - Never run `npx hyperframes skills` or `skills update`: those install for the whole computer.
 - Any `npx hyperframes init` must have `--skip-skills` or start with `HYPERFRAMES_SKIP_SKILLS=1`. Otherwise it quietly installs skills for the whole computer too.
 - `.claude/settings.json` sets `HYPERFRAMES_SKIP_SKILLS=1` for every conversation after this one.
@@ -120,7 +120,7 @@ Its skills live in this folder only, so they don't load in the person's other Cl
    ```bash
    DO_NOT_TRACK=1 HYPERFRAMES_SKIP_SKILLS=1 npx --yes skills add heygen-com/hyperframes --skill hyperframes --skill hyperframes-cli --skill hyperframes-registry --skill media-use --agent claude-code --copy --full-depth --yes
    ```
-   That installs HyperFrames' four core skills from HeyGen's GitHub. If `/hyperframes` later asks for another of its skills (such as `slideshow`), run the same command with that name in place of the four.
+   That installs HyperFrames' four core skills from HeyGen's GitHub. If the `hyperframes` skill later asks for another of its skills (such as `slideshow`), run the same command with that name in place of the four.
 3. **Its own Chrome**, used for rendering: `npx --yes hyperframes browser ensure`. This is a download of about 200 MB, separate from any Chrome they use.
 4. **The speech model**, for transcription on this computer. Check: `npx --yes hyperframes models list` shows parakeet "installed". If not, run `npx --yes hyperframes models install parakeet`. It's about 650 MB and takes a few minutes.
 5. **Health check:** `npx --yes hyperframes doctor`.
@@ -133,7 +133,7 @@ Its skills live in this folder only, so they don't load in the person's other Cl
 
 ## 5. Kie.ai (generated images, clips and music)
 
-Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI images, short video clips and music. They buy credits on kie.ai, each thing it makes uses some, and Claude always says the cost and waits for a yes first.
+Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI images, short video clips and music. They buy credits on kie.ai, each thing it makes uses some, and the assistant always says the cost and waits for a yes first.
 - If `my-clinic.md` says `Kie.ai: later`, skip this step without asking.
 - If the person has no Kie.ai account, skip it and remember to write `Kie.ai: later` in step 6. Tell them they can say "set up Kie" any time to come back to this step.
 
@@ -141,7 +141,7 @@ Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI imag
    ```bash
    DO_NOT_TRACK=1 npx --yes skills add https://kie.ai --skill kie-models --agent claude-code --copy --yes
    ```
-2. **The key.** Never touch `.env` yourself: Claude's tools are blocked from it, and the `kie` skill's script is the only thing that reads or writes it.
+2. **The key.** Never touch `.env` yourself: your own tools are blocked from it (in Claude Code by `.claude/settings.json`; elsewhere, treat it as blocked), and the `kie` skill's script is the only thing that reads or writes it.
    1. Ask them to sign in at kie.ai/api-key and copy their key (its copy button).
    2. Run `node .claude/skills/kie/scripts/kie.mjs key`. TextEdit (Mac) or Notepad (Windows) opens, showing `KIE_API_KEY=`.
    3. Tell them: paste the key straight after the `=`, save (⌘S on a Mac, Ctrl+S on Windows), close the window, and say "done".
@@ -156,7 +156,7 @@ When it works, set the `Kie.ai` line in `my-clinic.md` to `set up`, if the file 
 If not, ask these one at a time, in this order:
 
 1. **The clinic's name.**
-2. **Its design system.** This is the clinic's brand page made in Claude, with a link starting `https://claude.ai/`. If they don't know what that is, they don't have one yet, and that's fine.
+2. **Its design system.** This is the clinic's brand page made in Claude, with a link starting `https://claude.ai/`. Only Claude can open it; in other AI apps, ask for colours and a font as if there were none. If they don't know what that is, they don't have one yet, and that's fine.
    - **With a link:** read it with the Artifact tool and tell them the brand colours and fonts you found.
    - **Without one:** ask for two or three brand colours and a font, or offer to take them from the clinic's website. Ask whether there's a logo file. They can add a design system later.
 3. **Where their videos go:** YouTube, Instagram, Facebook, LinkedIn, TikTok or their website.
@@ -208,14 +208,14 @@ Run everything from this folder's top level. The test lives in `video-projects/s
    - `assets/test.silenced.mp4` exists;
    - `assets/test.words.cut-candidates.md` lists the "how how" stutter.
 
-   The finder only catches stutters like that one. The restart and the "um" are left for Claude's own read of the transcript in a real edit (see `CLAUDE.md`). A misheard word, such as "verruca", is normal; names and terms get fixed in the captions.
+   The finder only catches stutters like that one. The restart and the "um" are left for the assistant's own read of the transcript in a real edit (see `AGENTS.md`). A misheard word, such as "verruca", is normal; names and terms get fixed in the captions.
 3. **A HyperFrames render.** Warn first: the computer may ask whether "chrome-headless-shell" or "node" may "accept incoming network connections". Deny is fine.
    ```bash
    (cd video-projects/setup-test && npx --yes hyperframes init render-test --example blank --non-interactive --skip-skills && cd render-test && npx --yes hyperframes render . --quality draft --output renders/test.mp4)
    ```
    **Done when** `video-projects/setup-test/render-test/renders/test.mp4` exists. It takes under a minute. HyperFrames puts its own `CLAUDE.md` and `AGENTS.md` inside each project it creates. Leave them alone: they only apply inside that project's folder.
 
-Tell them it all works. Then ask them to start a **new conversation** in this folder, because that's when Claude loads the clinic rules and the new skills. Suggest a first prompt from the README's "Your first edit".
+Tell them it all works. Then ask them to start a **new conversation** in this folder, because that's when the assistant loads the clinic rules and the new skills. Suggest a first prompt from the README's "Your first edit".
 
 ## Updating
 
@@ -238,12 +238,12 @@ Run this when the person asks to update ("update my video editing setup"):
 | Mac: `brew: command not found` right after installing Homebrew | Run the `eval` line from step 2. On a new conversation, `~/.zprofile` covers it. |
 | Mac: Homebrew says the macOS version is unsupported or starts building from source | Stop. Ask them to update macOS first; an old version can take hours to build everything. |
 | Mac: `say` reports "Voice `Daniel` not found" | Run it again without `-v Daniel`. |
-| Mac: "Claude would like to access files in your Documents / Desktop / Downloads folder" | Allow only if the recording really is there. Better: move recordings into this folder. |
+| Mac: "Claude" (or another app) "would like to access files in your Documents / Desktop / Downloads folder" | Allow only if the recording really is there. Better: move recordings into this folder. |
 | Mac or Windows: "accept incoming network connections" for node or chrome-headless-shell | Deny is fine. The preview runs on this computer only. |
-| Windows: `winget` is not recognised | Install "App Installer" from the Microsoft Store, then restart Claude. |
-| Windows: a tool installed fine but "is not recognized" | Claude needs a restart (step 2, Windows). |
+| Windows: `winget` is not recognised | Install "App Installer" from the Microsoft Store, then restart the AI app. |
+| Windows: a tool installed fine but "is not recognized" | The AI app needs a restart (step 2, Windows). |
 | Windows: "running scripts is disabled on this system" | Use `npx.cmd` instead of `npx`. Never change the execution policy. |
-| Windows: Parakeet fails with a missing DLL or "VC++" | `winget install --id Microsoft.VCRedist.2015+.x64 -e`, restart Claude, then install Parakeet again. |
+| Windows: Parakeet fails with a missing DLL or "VC++" | `winget install --id Microsoft.VCRedist.2015+.x64 -e`, restart the AI app, then install Parakeet again. |
 | `npx` asks "Ok to proceed?" | Use `npx --yes`. |
 | Certificate errors (`SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_GET_ISSUER_CERT`) | The network inspects traffic, which is common on clinic Wi-Fi. Try another network, such as home or a phone hotspot. Never turn off certificate checks. |
 | Timeouts or `EAI_AGAIN` | Network blip. Wait a minute and try once more. |

@@ -2,7 +2,7 @@
 
 ## Licences
 
-- **This repo's own files** (`CLAUDE.md`, `README.md`, `SETUP.md`, `SKILLS.md`, `NOTICE.md`, `.gitignore`, and the `transcribe` and `kie` skills): MIT, see `LICENSE`.
+- **This repo's own files** (`AGENTS.md`, `CLAUDE.md`, `README.md`, `SETUP.md`, `SKILLS.md`, `NOTICE.md`, `.gitignore`, and the `transcribe` and `kie` skills): MIT, see `LICENSE`.
 - **The files bundled from Nate Herk** (below) keep their own licences, in `licenses/`.
 
 ## Bundled from Nate Herk's HyperFrames Student Kit

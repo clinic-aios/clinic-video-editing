@@ -1,33 +1,33 @@
 # Clinic Video Editing
 
-Record yourself talking to camera. Claude cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Your recordings are edited on your own computer and never uploaded: Claude works from their transcripts and the stills it checks.
+Record yourself talking to camera. Your AI assistant cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Your recordings are edited on your own computer and never uploaded: the assistant works from their transcripts and the stills it checks.
 
 ## What you need
 
-- Claude Desktop, using its **Code** tab.
+- Claude Desktop, using its **Code** tab. (The setup is written to work in Codex too, but it's only been tested in Claude so far.)
 - A Mac or Windows PC you can install software on, with about 5 GB free.
 - Optional: your clinic's design system in Claude, for brand colours and fonts.
 - Optional: a [Kie.ai](https://kie.ai) account with credits, for generated images, clips and music.
 
 ## Patient data: read this first
 
-- **Never** put special category patient health data into a Claude chat.
-- **Never** give Claude access to folders or files that hold it.
-- **Never** connect Claude to systems that hold it.
+- **Never** put special category patient health data into an AI chat.
+- **Never** give your AI assistant access to folders or files that hold it.
+- **Never** connect your AI assistant to systems that hold it.
 - Patients can appear in your clinic's videos only with their explicit written consent: separate from consent to treatment, naming where the video will be published, and theirs to withdraw at any time. Even then, edit those recordings somewhere else, not here: a video showing a patient holds their health data.
 - Recordings you edit here: no patients, no patient names, no screens from your clinic systems.
 
 ## Set up
 
 1. Create a folder called `clinic-video-editing` in your home folder. Avoid Desktop and Documents if they sync to iCloud or OneDrive.
-2. Open it in Claude's **Code** tab.
+2. Open it in Claude Desktop's **Code** tab, or your AI coding app.
 3. Paste this:
 
 > Set up clinic video editing in this folder. Download the setup guide with `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`, read all of it and follow it. Coach me one step at a time in plain English, and help me through anything that goes wrong on my computer.
 
-Claude checks your computer, installs what's missing, tells you which pop-ups to expect, and finishes by making a short test video. Setup takes 20–40 minutes, mostly downloads.
+Your assistant checks your computer, installs what's missing, tells you which pop-ups to expect, and finishes by making a short test video. Setup takes 20–40 minutes, mostly downloads.
 
-If setup stops part-way, for a restart, a pop-up or a break, open the folder again and say **"continue setup"**. Claude checks what's done and carries on.
+If setup stops part-way, for a restart, a pop-up or a break, open the folder again and say **"continue setup"**. It checks what's done and carries on.
 
 ## Your first edit
 
@@ -45,10 +45,10 @@ Your settings, keys, media and videos are never touched by an update.
 
 ## What's inside
 
-- `CLAUDE.md`: the clinic rules and the editing order Claude follows.
-- `SETUP.md`: the setup guide Claude follows, including fixes for common computer problems.
+- `AGENTS.md`: the clinic rules and the editing order the AI assistant follows. `CLAUDE.md` loads them for Claude; Codex and other tools read `AGENTS.md` directly.
+- `SETUP.md`: the setup guide the assistant follows, including fixes for common computer problems.
 - `SKILLS.md`: the editing skills in this starter, and how to add one.
-- `.claude/skills/`: the skills themselves.
+- `.claude/skills/`: the skills themselves (`.agents/skills` links to the same folder for Codex).
 
 HyperFrames (the video engine) and its skills, and Kie's skill, are fetched from their makers during setup. They aren't stored in this repo, and their skills load only in this folder.
 

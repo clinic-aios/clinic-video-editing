@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// The only thing in this folder that touches .env. Claude's own tools are blocked from
-// it (.claude/settings.json), so every Kie.ai request goes through here. The key is
-// read here, sent only to api.kie.ai, and never printed.
+// The only thing in this folder that touches .env. The assistant's own tools are blocked
+// from it (.claude/settings.json in Claude Code), so every Kie.ai request goes through
+// here. The key is read here, sent only to api.kie.ai, and never printed.
 //
 //   node .claude/skills/kie/scripts/kie.mjs key        open .env in TextEdit / Notepad to paste the key
 //   node .claude/skills/kie/scripts/kie.mjs balance    free credit check

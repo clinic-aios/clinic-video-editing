@@ -5,7 +5,7 @@ description: Every Kie.ai request in this folder goes through this skill. It ope
 
 # Kie
 
-`.env` is off limits to Claude's own tools. This script is the only thing that touches it. It reads the key, sends it only to `api.kie.ai`, and never prints it.
+`.env` is off limits to the assistant's own tools. This script is the only thing that touches it. It reads the key, sends it only to `api.kie.ai`, and never prints it.
 
 ```bash
 node .claude/skills/kie/scripts/kie.mjs key         # opens .env in TextEdit / Notepad
