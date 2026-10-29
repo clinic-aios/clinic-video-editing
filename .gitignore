@@ -1,0 +1,23 @@
+# Each clinic's own settings, keys and media stay on their machine
+my-clinic.md
+.env
+.env.*
+video-projects/
+media-library/
+renders/
+*.mp4
+*.mov
+*.m4a
+*.wav
+*.mp3
+
+# Third-party skills installed locally (HyperFrames, Kie); only ours are tracked
+.claude/skills/*
+!.claude/skills/cut-silences/
+!.claude/skills/cut-mistakes/
+.agents/
+skills-lock.json
+.claude/settings.local.json
+
+node_modules/
+.DS_Store
