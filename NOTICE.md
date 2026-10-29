@@ -2,7 +2,7 @@
 
 ## Licences
 
-- **This repo's own files** (`CLAUDE.md`, `README.md`, `NOTICE.md`, `.gitignore`): MIT, see `LICENSE`. *Provisional: not yet confirmed by Kumar.*
+- **This repo's own files** (`CLAUDE.md`, `README.md`, `NOTICE.md`, `.gitignore`): MIT, see `LICENSE`.
 - **The files bundled from Nate Herk** (below) keep their own licences, in `licenses/`.
 
 ## Bundled from Nate Herk's HyperFrames Student Kit
