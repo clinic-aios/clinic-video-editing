@@ -23,11 +23,12 @@ Repo: `https://github.com/clinic-aios/clinic-video-editing`
   - Never change security settings, turn off antivirus or firewall protection, change PowerShell's execution policy, or skip certificate checks.
   - Don't run install hints that other tools print, such as the ones `hyperframes doctor` shows for optional extras.
   - If a fix would need any of those, stop and explain.
-- **When something fails:**
-  1. Read the whole error.
-  2. Look it up in Known bumps below. Explain it simply and try the fix once.
-  3. If it still fails, stop. Say plainly what happened, and give the person a short summary to send to their trainer: the computer, the step and the exact error.
-  4. Never loop on the same failing command.
+- **When something fails, you are their support.** There's no helpdesk behind this starter, so work the problem through:
+  1. Read the whole error, and check Known bumps below.
+  2. Work out the cause on this computer: what's installed, where, which version, what the network allows. Explain it simply.
+  3. Try a fix. If it doesn't work, try a *different* approach rather than the same command again: another install route, another network, a restart of the app.
+  4. Keep going while each attempt teaches you something, and keep the person told in plain words.
+  5. If you've genuinely run out of safe options, say so plainly. Explain what they can do themselves: update their computer, try another network, free up space, or ask whoever manages a work-managed computer. Then tell them which step to resume with "continue setup".
 
 ## 1. This computer
 

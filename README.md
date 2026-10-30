@@ -45,6 +45,10 @@ When you're between videos, say:
 
 Your assistant tells you what's new. Your settings, keys, media and videos are never touched by an update.
 
+## If something goes wrong
+
+Tell your assistant what happened, or paste the error. It has the setup guide and can see your computer, so it's your help desk. This starter is free and open source, and it comes as it is, without a support service.
+
 ## What's inside
 
 - `README.md`: this page, the only one written for people.
