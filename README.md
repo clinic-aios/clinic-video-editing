@@ -79,6 +79,7 @@ First release, for the pilot.
 - HyperFrames' and Kie's skills install into this folder only.
 - HyperFrames pinned to 0.8.216, engine and skills, so every clinic runs the version that was tested.
 - Before handing over a video, the assistant runs a 10-point checklist, shows you the plan first, and never sends frames to an outside AI.
+- At the start of each new video, the assistant tells you if an update is waiting. It never updates on its own.
 - A media library sorted by where each file came from: `brand/`, `my-photos/`, `my-clips/`, `ai-photos/`, `ai-clips/` and `music/`. Setup copies the clinic's photos and videos from its design system first, and searches the website only if they aren't there.
 - Rules in `AGENTS.md`, and skills in both `.claude/skills/` and `.agents/skills/`, so Codex can use it too (untested so far).
 

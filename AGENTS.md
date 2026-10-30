@@ -15,6 +15,16 @@ These rules are for whichever AI assistant works in this folder: Claude Code rea
 
 Coach the person through any problem their computer throws up, as the guide describes.
 
+**Update nudge.** At the start of each new video, check quietly whether this starter has an update:
+
+```bash
+git fetch -q origin 2>/dev/null && git log --oneline HEAD..origin/main | head -1
+```
+
+- **If it prints a line,** tell them once, in one sentence: there's an update to their video editing setup, and they can say "update my video editing setup" when they're between videos.
+- **Otherwise,** including when they're offline or the check fails, say nothing.
+- **Never update on your own,** and never in the middle of a video.
+
 ## Clinic rules (always)
 
 - No patients in recordings edited here. Patients may appear in the clinic's videos with their explicit written consent, but even then the recording holds special category health data, so it is edited outside this folder. If a recording turns out to show a patient, stop and tell the user. Never patient names, or screens from clinic systems (diary, notes, inbox, booking or practice software).
