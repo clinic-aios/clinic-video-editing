@@ -41,7 +41,11 @@ Coach the person through any problem their computer throws up, as the guide desc
 5. Show the Studio preview before the final render.
 6. Run the checks in "Before you hand over a video", and fix any "no" first.
 
-The cutting skills mention ElevenLabs, `validate-beat-sync.mjs` and a "motion graphics agent". None of these applies here: transcription is step 1, and step 4 follows step 3. Run HyperFrames as `npx --yes hyperframes`, and don't update it in the middle of a video.
+The cutting skills mention ElevenLabs, `validate-beat-sync.mjs` and a "motion graphics agent". None of these applies here: transcription is step 1, and step 4 follows step 3.
+
+HyperFrames is pinned to version 0.8.216, so every clinic runs the version this starter was tested with:
+- Run it as `npx --yes hyperframes@0.8.216 …`, even where HyperFrames' own skills write `npx hyperframes`.
+- Never run `hyperframes upgrade` or its version check (`@latest upgrade --check`), and ignore "newer version" notices. The version moves only when this starter is updated.
 
 HyperFrames' skills live in this folder, not the whole computer:
 - Never run `npx hyperframes skills` or `skills update`.

@@ -8,11 +8,11 @@ description: Makes a word-by-word transcript of a recording on this computer, re
 Step 1 of every edit. Produces `<recording-name>.words.json`, the shape the cutters read: `{ "words": [ { "text", "start", "end" } ], "audio_duration_secs" }`, in seconds on the recording's own timeline.
 
 ```bash
-npx --yes hyperframes transcribe "<recording>" --dir "<project>/assets" --json
+npx --yes hyperframes@0.8.216 transcribe "<recording>" --dir "<project>/assets" --json
 node .claude/skills/transcribe/scripts/words.mjs "<project>/assets/transcript.json" --video "<recording>"
 ```
 
-1. **HyperFrames transcribes** with its local speech engine and writes `transcript.json` into `--dir`. The JSON it prints names the engine. It must say `parakeet`. If it says `whisper`, stop: Whisper tidies away stutters and restarts, so `cut-mistakes` would find nothing. Install Parakeet with `npx --yes hyperframes models install parakeet`, then transcribe again. A long recording takes a few minutes.
+1. **HyperFrames transcribes** with its local speech engine and writes `transcript.json` into `--dir`. The JSON it prints names the engine. It must say `parakeet`. If it says `whisper`, stop: Whisper tidies away stutters and restarts, so `cut-mistakes` would find nothing. Install Parakeet with `npx --yes hyperframes@0.8.216 models install parakeet`, then transcribe again. A long recording takes a few minutes.
 2. **`words.mjs` lines the words up with the audio.** Speech engines often stretch the word before a pause right across it, which hides the pause from `cut-silences`. The script checks every word against the recording's real silences, trims it back, and writes `<recording-name>.words.json` next to the transcript. It prints the word count, how many words it trimmed and the opening words.
 3. **Check with the person.** Show them the opening words and ask if that's what they said. Misspelt names are fixed later, in the captions, not here.
 

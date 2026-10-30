@@ -77,6 +77,8 @@ First release, for the pilot.
 - Nate Herk's `cut-silences` and `cut-mistakes`, copied from his kit at commit `10511e5` (2026-10-14).
 - Kie key handled by the `kie` shim only: Kie's own commands run through it, and Claude Code is blocked from reading the key file.
 - HyperFrames' and Kie's skills install into this folder only.
+- HyperFrames pinned to 0.8.216, engine and skills, so every clinic runs the version that was tested.
+- Before handing over a video, the assistant runs a 10-point checklist, shows you the plan first, and never sends frames to an outside AI.
 - A media library sorted by where each file came from: `brand/`, `my-photos/`, `my-clips/`, `ai-photos/`, `ai-clips/` and `music/`. Setup copies the clinic's photos and videos from its design system first, and searches the website only if they aren't there.
 - Rules in `AGENTS.md`, and skills in both `.claude/skills/` and `.agents/skills/`, so Codex can use it too (untested so far).
 
@@ -114,6 +116,7 @@ How:
 ### Releasing
 
 1. Raise the **Version** line at the top of this page.
+   - To move HyperFrames to a newer version, test it with `SETUP.md` step 7 first. Then replace `0.8.216` everywhere it appears (`grep -rn 0.8.216 .`), in both skills folders too.
 2. Add a What's new entry with the date and plain-English bullets. Members' assistants read it to tell them what changed.
 3. Commit and push. Members get it with "Update my video editing setup".
 

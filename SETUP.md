@@ -115,16 +115,16 @@ Its skills live in this folder only, so they don't load in the person's other AI
 - `.claude/settings.json` sets `HYPERFRAMES_SKIP_SKILLS=1` for every conversation after this one.
 
 1. **Usage statistics off.** HyperFrames and the skills installer send anonymous usage statistics unless told not to. For a clinic, switch them off:
-   - Check: `npx --yes hyperframes telemetry status` says disabled. If not, run `npx --yes hyperframes telemetry disable`.
+   - Check: `npx --yes hyperframes@0.8.216 telemetry status` says disabled. If not, run `npx --yes hyperframes@0.8.216 telemetry disable`.
    - Start every skills install or update with `DO_NOT_TRACK=1`, as the commands below do.
 2. **Its skills, into this folder.** Check: `hyperframes/SKILL.md` exists in your app's skills folder (`.claude/skills/` in Claude Code, `.agents/skills/` in Codex and other tools). If not, run this. In Codex or another tool, use `--agent codex` in place of `--agent claude-code`:
    ```bash
-   DO_NOT_TRACK=1 HYPERFRAMES_SKIP_SKILLS=1 npx --yes skills add heygen-com/hyperframes --skill hyperframes --skill hyperframes-cli --skill hyperframes-registry --skill media-use --agent claude-code --copy --full-depth --yes
+   DO_NOT_TRACK=1 HYPERFRAMES_SKIP_SKILLS=1 npx --yes skills add "heygen-com/hyperframes#v0.8.216" --skill hyperframes --skill hyperframes-cli --skill hyperframes-registry --skill media-use --agent claude-code --copy --full-depth --yes
    ```
    That installs HyperFrames' four core skills from HeyGen's GitHub. If the `hyperframes` skill later asks for another of its skills (such as `slideshow`), run the same command with that name in place of the four.
-3. **Its own Chrome**, used for rendering: `npx --yes hyperframes browser ensure`. This is a download of about 200 MB, separate from any Chrome they use.
-4. **The speech model**, for transcription on this computer. Check: `npx --yes hyperframes models list` shows parakeet "installed". If not, run `npx --yes hyperframes models install parakeet`. It's about 650 MB and takes a few minutes.
-5. **Health check:** `npx --yes hyperframes doctor`.
+3. **Its own Chrome**, used for rendering: `npx --yes hyperframes@0.8.216 browser ensure`. This is a download of about 200 MB, separate from any Chrome they use.
+4. **The speech model**, for transcription on this computer. Check: `npx --yes hyperframes@0.8.216 models list` shows parakeet "installed". If not, run `npx --yes hyperframes@0.8.216 models install parakeet`. It's about 650 MB and takes a few minutes.
+5. **Health check:** `npx --yes hyperframes@0.8.216 doctor`.
    - The lines that matter are Node.js, FFmpeg, FFprobe and Chrome.
    - Docker, TTS (Kokoro), BGM (MusicGen) and whisper-cpp are optional, so ignore a ✗ on those.
    - Don't run the install hints it prints for them; one even contains `sudo`. A stray `docker: command not found` line is normal too.
@@ -208,7 +208,7 @@ Run everything from this folder's top level. The test lives in `video-projects/s
      ```
 2. **The first three steps of an edit:**
    ```bash
-   npx --yes hyperframes transcribe video-projects/setup-test/test.mp4 --dir video-projects/setup-test/assets --json
+   npx --yes hyperframes@0.8.216 transcribe video-projects/setup-test/test.mp4 --dir video-projects/setup-test/assets --json
    node .claude/skills/transcribe/scripts/words.mjs video-projects/setup-test/assets/transcript.json --video video-projects/setup-test/test.mp4
    node .claude/skills/cut-silences/scripts/cut-silences.mjs video-projects/setup-test/assets/test.words.json --video video-projects/setup-test/test.mp4 --out-dir video-projects/setup-test/assets --apply --output video-projects/setup-test/assets/test.silenced.mp4
    node .claude/skills/cut-mistakes/scripts/find-cut-candidates.mjs video-projects/setup-test/assets/test.words.silence-transcript.json --out-dir video-projects/setup-test/assets
@@ -221,7 +221,7 @@ Run everything from this folder's top level. The test lives in `video-projects/s
    The finder only catches stutters like that one. The restart and the "um" are left for the assistant's own read of the transcript in a real edit (see `AGENTS.md`). A misheard word, such as "verruca", is normal; names and terms get fixed in the captions.
 3. **A HyperFrames render.** Warn first: the computer may ask whether "chrome-headless-shell" or "node" may "accept incoming network connections". Deny is fine.
    ```bash
-   (cd video-projects/setup-test && npx --yes hyperframes init render-test --example blank --non-interactive --skip-skills && cd render-test && npx --yes hyperframes render . --quality draft --output renders/test.mp4)
+   (cd video-projects/setup-test && npx --yes hyperframes@0.8.216 init render-test --example blank --non-interactive --skip-skills && cd render-test && npx --yes hyperframes@0.8.216 render . --quality draft --output renders/test.mp4)
    ```
    **Done when** `video-projects/setup-test/render-test/renders/test.mp4` exists. It takes under a minute. HyperFrames puts its own `CLAUDE.md` and `AGENTS.md` inside each project it creates. Leave them alone: they only apply inside that project's folder.
 
@@ -260,7 +260,7 @@ Run this when the person asks to update ("update my video editing setup"):
 | `npx` asks "Ok to proceed?" | Use `npx --yes`. |
 | Certificate errors (`SELF_SIGNED_CERT_IN_CHAIN`, `UNABLE_TO_GET_ISSUER_CERT`) | The network inspects traffic, which is common on clinic Wi-Fi. Try another network, such as home or a phone hotspot. Never turn off certificate checks. |
 | Timeouts or `EAI_AGAIN` | Network blip. Wait a minute and try once more. |
-| `hyperframes browser ensure` fails | `npx --yes hyperframes browser ensure --force`. If it's blocked, try another network. |
+| `hyperframes browser ensure` fails | `npx --yes hyperframes@0.8.216 browser ensure --force`. If it's blocked, try another network. |
 | Parakeet still won't install | Carry on with Whisper, but warn them that stutters and restarts will be harder to find. Try Parakeet again another day. |
 | "No space left on device" | Stop. They free up space, then continue setup. |
 | Kie: 401 | The key is wrong. Run the kie skill's `key` command so they can paste it again. |
