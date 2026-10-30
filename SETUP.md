@@ -12,6 +12,7 @@ Repo: `https://github.com/clinic-aios/clinic-video-editing`
   - The AI app's own "allow this command?" prompts count too. Explain each command in one line so they can allow it.
   - Never suggest turning those prompts off.
 - **Keep a short progress list** (✓ done, → now, · to do) and show it after each step.
+- **Keep long downloads quiet.** Installs and downloads print progress bars that flood the chat. Send their output to a log, and show only its end if something fails: `<command> > "${TMPDIR:-/tmp}/setup.log" 2>&1 || tail -c 1500 "${TMPDIR:-/tmp}/setup.log"`.
 - **Passwords and keys never go in the chat.**
   - Never run `sudo`.
   - On a Mac, anything that needs the computer's password runs in a Terminal window you open for them (step 2). They type the password there.

@@ -34,10 +34,12 @@ Coach the person through any problem their computer throws up, as the guide desc
    - Show the person every candidate with your recommendation, and apply only the ones they approve. Never skip this review.
    - For its review page, start `npx --yes serve . -p 8080 -n` in the background, then open the page. If a firewall pop-up appears, Deny is fine.
 4. Graphics, captions and render:
-   - Start with the `hyperframes` skill and the cut video, and let it choose its own workflow and skills.
+   - First show a scene-by-scene plan in chat (time, what's on screen, the words spoken, and anything to generate with its cost), and wait for a go.
+   - Then start with the `hyperframes` skill and the cut video, and let it choose its own workflow and skills.
    - Brand everything from the project's `DESIGN.md`, and put the captions in the same composition.
    - Never name HyperFrames' other skills here. They change between releases, and the `hyperframes` skill always routes to the current ones.
 5. Show the Studio preview before the final render.
+6. Run the checks in "Before you hand over a video", and fix any "no" first.
 
 The cutting skills mention ElevenLabs, `validate-beat-sync.mjs` and a "motion graphics agent". None of these applies here: transcription is step 1, and step 4 follows step 3. Run HyperFrames as `npx --yes hyperframes`, and don't update it in the middle of a video.
 
@@ -45,6 +47,22 @@ HyperFrames' skills live in this folder, not the whole computer:
 - Never run `npx hyperframes skills` or `skills update`.
 - Give every `npx hyperframes init` `--skip-skills`.
 - If the `hyperframes` skill wants another of its skills, install it into this folder with `SETUP.md` step 4.2.
+- Always give `npx hyperframes snapshot` `--describe false`, so video frames are never sent to an outside AI service.
+
+## Before you hand over a video
+
+Answer each check yes or no before sharing the final render. Fix any "no" first.
+
+1. No patients, patient names or clinic-system screens anywhere?
+2. Nothing from `ai-photos/` or `ai-clips/` shown as a patient, a testimonial or a result?
+3. Every number and claim on screen is one the person said, and every health claim is accurate?
+4. Logos come only from `media-library/brand/`, never redrawn or generated?
+5. Captions and cards stay clear of the face and mouth?
+6. Every line of text is whole and readable on a phone?
+7. Every cut lands between words, with nothing clipped?
+8. The person approved the plan, the mistake cuts and every paid generation?
+9. HyperFrames' own review (`check --json`, then `snapshot --review --describe false`) shows no P0 problems?
+10. You can't hear the mix. Did you ask them to listen for the music level and any clipped words?
 
 The starter's skills are listed in `README.md` ("The skills"). They're in `.claude/skills/` for Claude Code and `.agents/skills/` for Codex and other tools; the starter's own skills are in both.
 
