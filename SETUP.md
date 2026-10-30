@@ -175,9 +175,18 @@ Then write `my-clinic.md`:
 - Always remember: <notes>
 ```
 
-Offer to save the clinic's logo, photos and videos from its website into `media-library/brand/`, with no patients in any of them.
+Create `video-projects/` and these media folders if they're missing: `media-library/brand/`, `my-photos/`, `my-clips/`, `ai-photos/`, `ai-clips/` and `music/`. `AGENTS.md` says what goes where.
 
-Create `media-library/brand/`, `media-library/kie/`, `media-library/b-roll/` and `video-projects/` if they're missing.
+**The clinic's media** (logo, photos, video clips). Get them once, in this order:
+1. **Already here?** If `brand/`, `my-photos/` or `my-clips/` already hold files, only add what's missing, and skip the website.
+2. **From the design system first** (Claude only). If `my-clinic.md` links a design system and you can open it with the Artifact tool:
+   - list its published files and its uploaded assets (`list` with `scope` `files`, then `assets`);
+   - download every logo, font, photo and video (`read` with `paths`). They land in a temporary folder;
+   - copy each into the right folder with a clear name.
+
+   The design system was made from their website, so if it has photos or videos, don't search the website again. Tell them what you copied.
+3. **From the website, only if needed.** If there's no design system, it holds no photos or videos, or you can't open it, offer to download the logo, photos and videos from the clinic's website into the same folders.
+4. **Never patients,** whatever the source. Tell them they can drop their own photos and clips into `my-photos/` and `my-clips/` at any time.
 
 ## 7. Prove it works
 

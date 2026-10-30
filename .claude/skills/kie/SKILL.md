@@ -26,6 +26,6 @@ node .claude/skills/kie/scripts/kie.mjs call GET "/api/v1/jobs/recordInfo?taskId
 1. **Choose.** Use `kie-models` to choose the model and build the request: its endpoint, its JSON body and its price.
 2. **Ask first.** Tell the person the model and the credit cost, and wait for a yes.
 3. **Send.** Write the JSON body to `<project>/assets/kie-task.json` and send it with `call POST`. Then poll with `call GET` until the task finishes.
-4. **Save.** Download the result URLs into `media-library/kie/`. The result links need no key, so plain `curl -o` is fine. Keep the task id.
+4. **Save.** Download each result into the media library by type: images to `media-library/ai-photos/`, video clips to `ai-clips/`, music to `music/`. The result links need no key, so plain `curl -o` is fine. Keep the task id.
 
 Where `kie-models` shows `curl … -H "Authorization: Bearer $KIE_API_KEY"`, send the same method, path and body through `call` instead.

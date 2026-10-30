@@ -77,6 +77,7 @@ First release, for the pilot.
 - Nate Herk's `cut-silences` and `cut-mistakes`, copied from his kit at commit `10511e5` (2026-10-14).
 - Kie key handled by the `kie` skill only. Claude Code is blocked from reading the key file.
 - HyperFrames' and Kie's skills install into this folder only.
+- A media library sorted by where each file came from: `brand/`, `my-photos/`, `my-clips/`, `ai-photos/`, `ai-clips/` and `music/`. Setup copies the clinic's photos and videos from its design system first, and searches the website only if they aren't there.
 - Rules in `AGENTS.md`, and skills in both `.claude/skills/` and `.agents/skills/`, so Codex can use it too (untested so far).
 
 ## For maintainers

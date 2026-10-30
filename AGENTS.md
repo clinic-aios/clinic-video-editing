@@ -54,12 +54,18 @@ Brand only from `my-clinic.md`:
 - **If it links a design system,** that's the only brand source. If you can open claude.ai links (Claude's Artifact tool), read its `project/README.md` and write every project's `DESIGN.md` from it: palette, type, logo and tone. If you can't, use the Brand line instead, as below.
 - **If it says "not yet",** use its Brand line (logo, colours, font) the same way. If that's empty too, ask for those once, add them to `my-clinic.md`, and carry on.
 
-When a brand image or film is used, save a local copy in `media-library/brand/`.
+The design system sets the look. Videos are built from the files in `media-library/`, because HyperFrames can only use files on this computer. If the person adds photos or videos to their design system later, copy them across with `SETUP.md` step 6's media step.
 
 ## Folders
 
 - `video-projects/<slug>/`: one folder per video. It holds the recording, `assets/` (transcripts, cuts and the cut videos, as the cutting skills expect), the composition and `renders/`.
-- `media-library/`: shared media in `brand/`, `kie/` and `b-roll/`. Projects use files from here rather than copying them about.
+- `media-library/`: shared media, sorted by where it came from. Projects use files from here rather than copying them about.
+  - `brand/`: logo files and fonts.
+  - `my-photos/`: photos the clinic owns, such as premises, team and equipment. Never patients.
+  - `my-clips/`: footage the clinic filmed, including its website's videos. Never patients.
+  - `ai-photos/` and `ai-clips/`: anything made with AI. Never show it as a patient, a testimonial or a result.
+  - `music/`: music beds, AI-made or licensed.
+  - Any of these can be used as b-roll; "b-roll" is how a clip is used, not a folder.
 - `.env`: the Kie key. It's off limits: only the `kie` skill's script reads or writes it.
 - All of these, and `my-clinic.md`, are gitignored and stay on this computer.
 
@@ -70,4 +76,4 @@ When a brand image or film is used, save a local copy in `media-library/brand/`.
   - send every request through this starter's `kie` skill, never with curl and the key.
 - If `my-clinic.md` says `Kie.ai: later`, offer to set it up with `SETUP.md` step 5 before the first generation.
 - Before every generation, state the model and the credit cost, and wait for a yes.
-- Save outputs to `media-library/kie/` and keep the task id.
+- Save outputs by type, to `media-library/ai-photos/`, `ai-clips/` or `music/`, and keep the task id.
