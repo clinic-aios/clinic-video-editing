@@ -61,7 +61,7 @@ Your assistant tells you what's new. Your settings, keys, media and videos are n
 | `transcribe` | Word-by-word transcript made on the computer. It keeps stutters and restarts, and lines words up with the real pauses. | This starter | 0.1.0 |
 | `cut-silences` | Trims dead air and long pauses, keeping a natural breath. | Nate Herk's Student Kit, unchanged | 0.1.0 |
 | `cut-mistakes` | Finds stutters, false starts and retakes, then cuts only the ones you approve. Its review page is `scripts/build-edl-review.mjs`. | Nate Herk's Student Kit, unchanged | 0.1.0 |
-| `kie` | Opens the key file for you to paste your Kie key, and sends every Kie request without the key being shown. It's the only thing allowed to touch `.env`. | This starter | 0.1.0 |
+| `kie` | A small shim: it opens the key file for you to paste your Kie key, then runs Kie's own commands with the key loaded but never shown. It's the only thing allowed to touch `.env`. | This starter | 0.1.0 |
 
 Setup also installs these into your skills folder. They come from their makers, aren't stored in this repo, and load only in this folder, never in your other AI projects:
 - HyperFrames' four core skills (`hyperframes`, `hyperframes-cli`, `hyperframes-registry`, `media-use`), from HeyGen's GitHub. The `hyperframes` skill is the front door.
@@ -75,7 +75,7 @@ First release, for the pilot.
 - One setup prompt; `SETUP.md` coaches you through your computer's quirks and ends with a test video.
 - Transcription on your computer with Parakeet. It keeps the slips the mistake-cutter needs to see.
 - Nate Herk's `cut-silences` and `cut-mistakes`, copied from his kit at commit `10511e5` (2026-10-14).
-- Kie key handled by the `kie` skill only. Claude Code is blocked from reading the key file.
+- Kie key handled by the `kie` shim only: Kie's own commands run through it, and Claude Code is blocked from reading the key file.
 - HyperFrames' and Kie's skills install into this folder only.
 - A media library sorted by where each file came from: `brand/`, `my-photos/`, `my-clips/`, `ai-photos/`, `ai-clips/` and `music/`. Setup copies the clinic's photos and videos from its design system first, and searches the website only if they aren't there.
 - Rules in `AGENTS.md`, and skills in both `.claude/skills/` and `.agents/skills/`, so Codex can use it too (untested so far).

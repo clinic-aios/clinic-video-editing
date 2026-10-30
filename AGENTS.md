@@ -73,7 +73,7 @@ The design system sets the look. Videos are built from the files in `media-libra
 
 - For images, video clips and music:
   - choose the model, its input and its price with Kie's own skill, `kie-models`;
-  - send every request through this starter's `kie` skill, never with curl and the key.
+  - run every one of its commands, look-ups and uploads included, word for word through this starter's `kie` skill (`run`), which loads the key without showing it. Never read `.env` or print the key.
 - If `my-clinic.md` says `Kie.ai: later`, offer to set it up with `SETUP.md` step 5 before the first generation.
 - Before every generation, state the model and the credit cost, and wait for a yes.
 - Save outputs by type, to `media-library/ai-photos/`, `ai-clips/` or `music/`, and keep the task id.

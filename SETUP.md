@@ -145,7 +145,7 @@ Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI imag
    1. Ask them to sign in at kie.ai/api-key and copy their key (its copy button).
    2. Run `node .claude/skills/kie/scripts/kie.mjs key`. TextEdit (Mac) or Notepad (Windows) opens, showing `KIE_API_KEY=`.
    3. Tell them: paste the key straight after the `=`, save (⌘S on a Mac, Ctrl+S on Windows), close the window, and say "done".
-3. **Test it for free:** `node .claude/skills/kie/scripts/kie.mjs balance` should print a credit balance. If it says the key is wrong, run `key` again so they can fix it.
+3. **Test it for free,** with the balance check in the `kie` skill ("Saving the key", step 4). It runs Kie's own credit command through the skill's `run`. A `"code":200` reply shows their credits; a 401 means the key is wrong, so run `key` again for them to fix it.
 
 When it works, set the `Kie.ai` line in `my-clinic.md` to `set up`, if the file exists.
 
