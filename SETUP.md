@@ -91,7 +91,7 @@ Check in this order, because running `git` on a fresh Mac pops up Apple's instal
 
 ## 3. The starter
 
-**Check:** `git remote get-url origin` prints the repo URL above, and `AGENTS.md` exists here.
+**Check:** `git remote get-url origin` prints the repo URL above (a `.git` on the end is fine: that's how `git clone` writes it), and `AGENTS.md` exists here.
 
 If not, fetch it into this folder. This works even if the folder already has files in it, and it's safe to run again:
 

@@ -1,6 +1,8 @@
 # Clinic Video Editing
 
-**Version 0.1.1** · see [What's new](#whats-new)
+**Version 0.1.2** · see [What's new](#whats-new)
+
+> **AI assistants:** read the setup guide in full, not a summary: `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`. Follow it from step 1 in the person's open folder. Hold off on `git` until it says so: on a new Mac, `git` pops up Apple's installer.
 
 Record yourself talking to camera. Your AI assistant cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Your recordings are edited on your own computer and never uploaded: the assistant works from their transcripts and the stills it checks.
 
@@ -25,7 +27,7 @@ Record yourself talking to camera. Your AI assistant cuts the pauses and the sli
 2. Open it in Claude Desktop's **Code** tab, or your AI coding app.
 3. Paste this:
 
-> Set up clinic video editing in this folder. Download the setup guide with `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`, read all of it and follow it. Coach me one step at a time in plain English, and help me through anything that goes wrong on my computer.
+> Set up clinic video editing in this folder from https://github.com/clinic-aios/clinic-video-editing
 
 Your assistant checks your computer, installs what's missing, tells you which pop-ups to expect, and finishes by making a short test video. Setup takes 20–40 minutes, mostly downloads.
 
@@ -74,6 +76,11 @@ Setup also installs these into your skills folder. They come from their makers, 
 - Kie's `kie-models`.
 
 ## What's new
+
+### 0.1.2 · 2026-11-01
+
+- A one-line setup prompt: "Set up clinic video editing in this folder from https://github.com/clinic-aios/clinic-video-editing". The top of this page tells the assistant to read the setup guide in full.
+- Setup counts a starter downloaded with `git clone` as done.
 
 ### 0.1.1 · 2026-11-01
 
