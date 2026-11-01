@@ -1,13 +1,13 @@
 # Clinic Video Editing
 
-**Version 0.1.0** · see [What's new](#whats-new)
+**Version 0.1.1** · see [What's new](#whats-new)
 
 Record yourself talking to camera. Your AI assistant cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Your recordings are edited on your own computer and never uploaded: the assistant works from their transcripts and the stills it checks.
 
 ## What you need
 
 - Claude Desktop, using its **Code** tab. (The setup is written to work in Codex too, but it's only been tested in Claude so far.)
-- A Mac or Windows PC you can install software on, with about 5 GB free.
+- A Mac or Windows PC with an administrator account (setup installs software), and about 5 GB free.
 - Optional: your clinic's design system in Claude, for brand colours and fonts.
 - Optional: a [Kie.ai](https://kie.ai) account with credits, for generated images, clips and music.
 
@@ -33,9 +33,11 @@ If setup stops part-way, for a restart, a pop-up or a break, open the folder aga
 
 ## Your first edit
 
-Start a new conversation in the folder and say:
+Put your recording in this folder (drag it in with Finder or File Explorer), start a new conversation here and say what you want. For example:
 
-> Edit my recording at [path] for [Instagram reel / YouTube / website]. Cut the pauses and show me the mistake cuts before applying them, then add on-brand captions and graphics. Show me the preview before the final render.
+> Make a 60-second Instagram reel about how we treat verrucas, from my recording verruca-tips.mp4 in this folder. Add our own photos and clips where they help, and end with a call to book on our website.
+
+Change the platform, length, topic and recording to suit. No recording yet? Ask for a video made from your photos and clips instead. Your assistant asks about anything you leave out, shows you a plan, and shows you the preview before the final render.
 
 ## Keeping it up to date
 
@@ -55,7 +57,7 @@ Tell your assistant what happened, or paste the error. It has the setup guide an
 - `SETUP.md`: the setup and update guide your assistant follows, including fixes for common computer problems.
 - `AGENTS.md`: the clinic rules and the editing order your assistant follows. `CLAUDE.md` loads them for Claude; Codex and other tools read `AGENTS.md` directly.
 - `.claude/skills/` and `.agents/skills/`: the skills, in two identical copies. The first is for Claude Code, the second for Codex and other tools. Add your own skills to the one your app uses.
-- `.claude/settings.json`: Claude Code settings that keep your key file out of the assistant's reach.
+- `.claude/settings.json`: Claude Code settings that keep your key file out of the assistant's reach. Codex has no equivalent, so there only the rules in `AGENTS.md` keep it out.
 - `LICENSE` and `licenses/`: the licences (see the end of this page).
 
 ## The skills
@@ -72,6 +74,14 @@ Setup also installs these into your skills folder. They come from their makers, 
 - Kie's `kie-models`.
 
 ## What's new
+
+### 0.1.1 · 2026-11-01
+
+- Feed posts and ads can be 4:5 or 1:1, as well as 16:9 and 9:16.
+- Ads and on-screen claims follow the UK advertising rules for health services (the CAP Code): no guaranteed results.
+- A video can be made from your photos and clips alone, without a recording.
+- A simpler first-edit prompt, with an example to change.
+- Clearer about needing an administrator account, and about how Codex treats the key file.
 
 ### 0.1.0 · 2026-10-29
 

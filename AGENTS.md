@@ -31,11 +31,12 @@ git fetch -q origin 2>/dev/null && git log --oneline HEAD..origin/main | head -1
 - Never ask the user to put special category patient health data into a chat. Never open folders or files that hold it. Never connect to systems that hold it. If any appears, stop, don't repeat it, and tell the user to delete the conversation and tell their data protection lead.
 - Calm pacing: one idea per scene of about four seconds. No hype cuts, flashing or "sizzle".
 - Never show AI-generated people as patients, in testimonials, or as before-and-after results. Keep health claims accurate.
+- Ads and on-screen claims follow the UK advertising rules for health services (the CAP Code): no guaranteed results, and no claim the clinic can't back up.
 - Never print API keys or ask for them in chat.
 
 ## Running order
 
-0. Ask where the video will be published, then set the shape from it: 16:9 or 9:16, 1080p unless asked otherwise.
+0. Ask where the video will be published, then set the shape from it: 16:9 for YouTube and websites, 9:16 for reels, Shorts and Stories, 4:5 or 1:1 for feed posts and ads. 1080p unless asked otherwise. With no recording (a video made from photos and clips), go straight to step 4.
 1. `transcribe`: the word-by-word transcript.
 2. `cut-silences`: render the silenced video.
 3. `cut-mistakes`:
@@ -69,7 +70,7 @@ Answer each check yes or no before sharing the final render. Fix any "no" first.
 
 1. No patients, patient names or clinic-system screens anywhere?
 2. Nothing from `ai-photos/` or `ai-clips/` shown as a patient, a testimonial or a result?
-3. Every number and claim on screen is one the person said, and every health claim is accurate?
+3. Every number and claim on screen is one the person said, every health claim is accurate, and nothing promises a result (CAP Code)?
 4. Logos come only from `media-library/brand/`, never redrawn or generated?
 5. Captions and cards stay clear of the face and mouth?
 6. Every line of text is whole and readable on a phone?
