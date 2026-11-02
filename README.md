@@ -1,6 +1,6 @@
 # Clinic Video Editing
 
-**Version 0.1.3** · see [What's new](#whats-new)
+**Version 0.1.4** · see [What's new](#whats-new)
 
 > **AI assistants:** read the setup guide in full, not a summary: `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`. Follow it from step 1 in the person's open folder. Hold off on `git` until it says so: on a new Mac, `git` pops up Apple's installer. The folder may already hold files, for example from making the design system; that's fine.
 
@@ -76,6 +76,10 @@ Setup also installs these into your skills folder. They come from their makers, 
 - Kie's `kie-models`.
 
 ## What's new
+
+### 0.1.4 · 2026-11-02
+
+- Saying "Set up Kie" always connects Kie.ai, even if you chose "later" during setup.
 
 ### 0.1.3 · 2026-11-02
 

@@ -127,7 +127,7 @@ Its skills live in this folder only, so they don't load in the person's other AI
 ## 5. Kie.ai (generated images, clips and music)
 
 Optional. In plain English, Kie.ai is a pay-as-you-go service that makes AI images, short video clips and music. They buy credits on kie.ai, each thing it makes uses some, and the assistant always says the cost and waits for a yes first.
-- If `my-clinic.md` says `Kie.ai: later`, skip this step without asking.
+- If `my-clinic.md` says `Kie.ai: later`, skip this step without asking during setup. But when the person asks to set up Kie ("set up Kie"), always run it, then change that line to `set up`.
 - If the person has no Kie.ai account, skip it and remember to write `Kie.ai: later` in step 6. Tell them they can say "set up Kie" any time to come back to this step.
 
 1. **Kie's skill, into this folder.** Check: `kie-models/SKILL.md` exists in your app's skills folder. If not, run this, with `--agent codex` in Codex or another tool:
