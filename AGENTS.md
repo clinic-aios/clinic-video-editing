@@ -27,7 +27,7 @@ git fetch -q origin 2>/dev/null && git log --oneline HEAD..origin/main | head -1
 
 ## Clinic rules (always)
 
-- No patients in recordings edited here. Patients may appear in the clinic's videos with their explicit written consent, but even then the recording holds special category health data, so it is edited outside this folder. If a recording turns out to show a patient, stop and tell the user. Never patient names, or screens from clinic systems (diary, notes, inbox, booking or practice software).
+- No patients in the clinic's videos: actors or staff only. If a recording turns out to show a patient, stop and tell the user. Never patient names, or screens from clinic systems (diary, notes, inbox, booking or practice software).
 - Never ask the user to put special category patient health data into a chat. Never open folders or files that hold it. Never connect to systems that hold it. If any appears, stop, don't repeat it, and tell the user to delete the conversation and tell their data protection lead.
 - Calm pacing: one idea per scene of about four seconds. No hype cuts, flashing or "sizzle".
 - Never show AI-generated people as patients, in testimonials, or as before-and-after results. Keep health claims accurate.

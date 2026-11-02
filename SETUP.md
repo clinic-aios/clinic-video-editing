@@ -34,17 +34,8 @@ Repo: `https://github.com/clinic-aios/clinic-video-editing`
 
 **Check:** `uname -s` (Darwin = Mac; MINGW, MSYS or CYGWIN = Windows), `pwd`, and `df -h .`.
 
-- **Disk space.** Allow at least 5 GB free: about 2 GB for the tools, and the rest for videos. If there's less, say so and let the person decide whether to carry on.
-- **Synced folders.** Video files shouldn't live in a folder that syncs to the cloud. They're slow to upload, and the cloud can "offload" a file mid-edit. The folder is synced if:
-  - its path contains `OneDrive`, `iCloud`, `Mobile Documents`, `CloudStorage`, `Dropbox` or `Google Drive`;
-  - or, on a Mac, it's inside Documents or Desktop and `~/Library/Mobile Documents/com~apple~CloudDocs/Documents` exists.
-
-  If it is synced, and `AGENTS.md` isn't here yet (if it is, they've already chosen to stay, so don't ask again):
-  - recommend a folder in their home folder instead;
-  - offer to create it for them: `mkdir -p ~/clinic-video-editing`;
-  - then walk them through opening it. In their AI app's folder picker (in Claude Desktop, the Code tab's), they choose the folder, go to their home folder (the one with their name), pick `clinic-video-editing`, and paste the setup prompt again there.
-
-  If they'd rather stay, carry on.
+- **Disk space.** Allow 2–5 GB free, depending on what's already installed: about 2 GB for the tools (nearly 4 GB on a Mac without Apple's developer tools), and the rest for videos. If there's less, say so and let the person decide whether to carry on.
+- **Where the folder lives is their choice.** Desktop, Documents or anywhere else is fine; don't suggest moving it.
 
 ## 2. Tools
 
@@ -252,7 +243,8 @@ Run this when the person asks to update ("update my video editing setup"):
 | Mac: `brew: command not found` right after installing Homebrew | Run the `eval` line from step 2. On a new conversation, `~/.zprofile` covers it. |
 | Mac: Homebrew says the macOS version is unsupported or starts building from source | Stop. Ask them to update macOS first; an old version can take hours to build everything. |
 | Mac: `say` reports "Voice `Daniel` not found" | Run it again without `-v Daniel`. |
-| Mac: "Claude" (or another app) "would like to access files in your Documents / Desktop / Downloads folder" | Allow only if the recording really is there. Better: move recordings into this folder. |
+| Mac: "Claude" (or another app) "would like to access files in your Documents / Desktop / Downloads folder" | Allow if this folder, or the recording they want to edit, is there. Otherwise Don't Allow. |
+| A video in an iCloud, OneDrive or Dropbox folder won't open, or opens very slowly | The cloud has offloaded it to save space. Ask them to download it (Finder: right-click › Download Now; File Explorer: right-click › Always keep on this device), then try again. |
 | Mac or Windows: "accept incoming network connections" for node or chrome-headless-shell | Deny is fine. The preview runs on this computer only. |
 | Windows: `winget` is not recognised | Install "App Installer" from the Microsoft Store, then restart the AI app. |
 | Windows: a tool installed fine but "is not recognized" | The AI app needs a restart (step 2, Windows). |

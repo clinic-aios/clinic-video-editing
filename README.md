@@ -1,8 +1,8 @@
 # Clinic Video Editing
 
-**Version 0.1.2** · see [What's new](#whats-new)
+**Version 0.1.3** · see [What's new](#whats-new)
 
-> **AI assistants:** read the setup guide in full, not a summary: `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`. Follow it from step 1 in the person's open folder. Hold off on `git` until it says so: on a new Mac, `git` pops up Apple's installer.
+> **AI assistants:** read the setup guide in full, not a summary: `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`. Follow it from step 1 in the person's open folder. Hold off on `git` until it says so: on a new Mac, `git` pops up Apple's installer. The folder may already hold files, for example from making the design system; that's fine.
 
 Record yourself talking to camera. Your AI assistant cuts the pauses and the slips, then adds your clinic's brand graphics and captions and renders the finished video, ready for YouTube, a reel or your website. Your recordings are edited on your own computer and never uploaded: the assistant works from their transcripts and the stills it checks.
 
@@ -18,12 +18,12 @@ Record yourself talking to camera. Your AI assistant cuts the pauses and the sli
 - **Never** put special category patient health data into an AI chat.
 - **Never** give your AI assistant access to folders or files that hold it.
 - **Never** connect your AI assistant to systems that hold it.
-- Patients can appear in your clinic's videos only with their explicit written consent: separate from consent to treatment, naming where the video will be published, and theirs to withdraw at any time. Even then, edit those recordings somewhere else, not here: a video showing a patient holds their health data.
+- **Never** have patients appear in your clinic's videos: use actors or staff members instead.
 - Recordings you edit here: no patients, no patient names, no screens from your clinic systems.
 
 ## Set up
 
-1. Create a folder called `clinic-video-editing` in your home folder. Avoid Desktop and Documents if they sync to iCloud or OneDrive.
+1. Create a folder called `clinic-video-editing`, wherever suits you.
 2. Open it in Claude Desktop's **Code** tab, or your AI coding app.
 3. Paste this:
 
@@ -76,6 +76,12 @@ Setup also installs these into your skills folder. They come from their makers, 
 - Kie's `kie-models`.
 
 ## What's new
+
+### 0.1.3 · 2026-11-02
+
+- Your folder can live wherever you like, Desktop and Documents included. Setup no longer suggests moving it, and helps if the cloud offloads a video.
+- Setup's disk-space check allows 2–5 GB, depending on what's already installed.
+- No patients in your clinic's videos, and no patient data: use actors or staff members instead.
 
 ### 0.1.2 · 2026-11-01
 
