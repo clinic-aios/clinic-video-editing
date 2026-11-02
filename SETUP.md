@@ -45,27 +45,26 @@ Git, Node 22 or newer, and FFmpeg 7 or newer (with ffprobe).
 
 Check in this order, because running `git` on a fresh Mac pops up Apple's installer.
 
-1. **Homebrew** (installs the others). Check with `brew --version`. If that fails, try `/opt/homebrew/bin/brew --version` (Apple silicon) or `/usr/local/bin/brew --version` (Intel). If none works, install it:
-   - It needs their Mac password, so open it in its own Terminal window:
-     ```bash
-     printf '%s\n' '#!/bin/bash' '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' 'echo; echo "Finished. You can close this window and go back to the chat."' > "$TMPDIR/install-homebrew.command" && chmod +x "$TMPDIR/install-homebrew.command" && open "$TMPDIR/install-homebrew.command"
-     ```
-   - Tell them what to expect in that window:
+1. **Homebrew** (installs the others). Check that new conversations will find it: `env -i HOME="$HOME" zsh -lc 'command -v brew'` prints a path. The `env -i` starts from a clean slate, as a new conversation does, so this conversation's own settings can't hide the problem. If it doesn't, open this in its own Terminal window:
+   ```bash
+   printf '%s\n' '#!/bin/bash' '[ -x /opt/homebrew/bin/brew ] || [ -x /usr/local/bin/brew ] || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"' 'for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do if [ -x "$b" ]; then grep -qs "brew shellenv" ~/.zprofile || echo "eval \"\$($b shellenv)\"" >> ~/.zprofile; break; fi; done' 'echo; echo "Finished. You can close this window and go back to the chat."' > "$TMPDIR/homebrew.command" && chmod +x "$TMPDIR/homebrew.command" && open "$TMPDIR/homebrew.command"
+   ```
+   - **What the window does.** It installs Homebrew if it's missing, which needs their Mac password. Then it adds Homebrew's own line to `~/.zprofile`, so every new Terminal window and conversation can find what Homebrew installs. Claude isn't allowed to change that file itself, but this window can, because it runs as them.
+   - **Tell them what to expect** if Homebrew is being installed. If it's only the `~/.zprofile` line, the window finishes in a second and needs nothing from them.
      1. Type your Mac password. Nothing appears as you type, which is normal. Press Return.
      2. Press Return again when it asks to continue.
      3. If a pop-up offers to install Apple's "command line developer tools", click Install.
      4. Wait for "Installation successful" and "Finished". That's usually 5–15 minutes.
      5. Come back and say "done".
-   - Afterwards, make `brew` findable:
+   - **Afterwards,** make `brew` findable in this conversation too:
      ```bash
      eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
      ```
-     Add the same line to `~/.zprofile` if it isn't there.
 2. **Apple's developer tools.** Check with `xcode-select -p`, which never causes a pop-up. If it fails:
    - Warn them: "A pop-up will offer to install command line developer tools. Click Install and wait. It takes a few minutes."
    - Run `xcode-select --install`.
    - When it's finished, check again.
-3. **The tools.** Check: `git --version`, `node --version` (must be v22 or newer), `ffmpeg -version` and `ffprobe -version`. Install whatever is missing with `brew install node ffmpeg` (add `git` if needed). No password is needed. It takes a few minutes.
+3. **The tools.** Check: `git --version`, `node --version` (must be v22 or newer), `ffmpeg -version` and `ffprobe -version`. Install whatever is missing with `brew install node ffmpeg` (add `git` if needed). No password is needed. It takes a few minutes. Then check that a new conversation will find them too: `env -i HOME="$HOME" zsh -lc 'command -v node ffmpeg'` prints two paths. If it doesn't, run step 1's window again.
 
 ### Windows
 

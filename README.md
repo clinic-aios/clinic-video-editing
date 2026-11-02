@@ -1,6 +1,6 @@
 # Clinic Video Editing
 
-**Version 0.1.4** · see [What's new](#whats-new)
+**Version 0.1.5** · see [What's new](#whats-new)
 
 > **AI assistants:** read the setup guide in full, not a summary: `curl -fsSL https://raw.githubusercontent.com/clinic-aios/clinic-video-editing/main/SETUP.md`. Follow it from step 1 in the person's open folder. Hold off on `git` until it says so: on a new Mac, `git` pops up Apple's installer. The folder may already hold files, for example from making the design system; that's fine.
 
@@ -76,6 +76,10 @@ Setup also installs these into your skills folder. They come from their makers, 
 - Kie's `kie-models`.
 
 ## What's new
+
+### 0.1.5 · 2026-11-02
+
+- On a Mac, the Homebrew window now also tells new conversations where Homebrew's tools live, so you no longer have to paste a line into Terminal yourself. Setup checks this from a clean slate.
 
 ### 0.1.4 · 2026-11-02
 
